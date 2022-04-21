@@ -16,21 +16,35 @@ class GameServer:
 
     def __init__(self, web_server_address, web_server_port, game_server_port):
         self.logger = logging.getLogger("GameServer")
-        self.web_server_address: str = web_server_address
-        self.web_server_port: int = web_server_port
+        self.game_server_port = game_server_port
+        self.__register_game_server(web_server_address, web_server_port)
         self.logger.info("Starting game server on port %d", game_server_port)
         self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.s.bind(('localhost', game_server_port))
         self.s.listen(5)
-        self.logger.info("Game server started listening on port %d", game_server_port)
+        self.logger.info(
+            "Game server started listening on port %d", game_server_port)
 
     def run(self):
-        # self.__register_game_server()
         self.__listen_for_connection()
 
-    def __register_game_server(self):
+    def __register_game_server(self, web_server_address, web_server_port):
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        s.connect((self.web_server_address, self.web_server_port))
+        try:
+            s.connect((web_server_address, web_server_port))
+            message = f"register_game_server {self.game_server_port}"
+            s.sendall(message.encode())
+            acknowledge = s.recv(self.BUFFER_SIZE)
+            if acknowledge.decode().strip().lower() != "ok":
+                self.logger.error("Failed to register")
+                exit(1)
+            else:
+                self.logger.info("Game server registered with the web server")
+        except ConnectionRefusedError:
+            self.logger.error("Failed to connect to the web server")
+            exit(1)
+        finally:
+            s.close()
 
     def __listen_for_connection(self):
         while True:
@@ -46,7 +60,6 @@ class GameServer:
             else:
                 conn.sendall(b"Unknown command\nBye\n")
             conn.close()
-
 
     def __start_game(self, conn, addr, command):
         m = GameServer.START_GAME_PATTERN.match(command)

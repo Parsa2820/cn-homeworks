@@ -11,7 +11,7 @@ def main(argv):
         python3 main.py -p <port> -a <web_server_address> -q <web_server_port>
     '''
     port = 8586
-    web_server_address = 'localhost'
+    web_server_address = "localhost"
     web_server_port = 8585
     try:
         opts, _ = getopt.getopt(argv, "hp:a:q:", ["help", "port=", "address=", "qort="])
@@ -28,7 +28,7 @@ def main(argv):
             web_server_address = arg
         elif opt in ("-q", "--qort"):
             web_server_port = int(arg)
-    gs = GameServer(port, web_server_address, web_server_port)
+    gs = GameServer(web_server_address, web_server_port, port)
     gs.run()
 
 
