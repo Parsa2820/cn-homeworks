@@ -15,12 +15,14 @@ class GameServer:
         r"^start_game\s+(?P<mode>bot|multiplayer)$")
 
     def __init__(self, web_server_address, web_server_port, game_server_port):
+        self.logger = logging.getLogger("GameServer")
         self.web_server_address: str = web_server_address
         self.web_server_port: int = web_server_port
-        self.logger = logging.getLogger("GameServer")
+        self.logger.info("Starting game server on port %d", game_server_port)
         self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.s.bind(('localhost', game_server_port))
         self.s.listen(5)
+        self.logger.info("Game server started listening on port %d", game_server_port)
 
     def run(self):
         # self.__register_game_server()
@@ -36,14 +38,15 @@ class GameServer:
             self.logger.info("Connection from %s", addr)
             data = conn.recv(GameServer.BUFFER_SIZE)
             if not data:
-                break
+                continue
             command = data.decode("utf-8").strip()
             self.logger.debug("Received data: %s", command)
             if GameServer.START_GAME_PATTERN.match(command):
                 self.__start_game(conn, addr, command)
             else:
-                conn.sendall(b"Unknown command\n")
-        conn.close()
+                conn.sendall(b"Unknown command\nBye\n")
+            conn.close()
+
 
     def __start_game(self, conn, addr, command):
         m = GameServer.START_GAME_PATTERN.match(command)
@@ -72,20 +75,22 @@ class GameServer:
         # self.__play_game(game)
         pass
 
-    def __start_game(self, game: TicTacToe):
+    def __play_game(self, game: TicTacToe):
         while True:
             try:
-                try:
-                    game.play(game.player_o.ask_for_move(game.board))
-                except InvalidMoveException as e:
-                    game.player_o.send_message(e.message)
-                    return
                 try:
                     game.play(game.player_x.ask_for_move(game.board))
                 except InvalidMoveException as e:
                     game.player_x.send_message(e.message)
                     return
-            except GameOverException:
-                game.player_x.send_message("Game over! Winner is: " + game.winner.name)
-                game.player_o.send_message("Game over! Winner is: " + game.winner.name)
+                try:
+                    game.play(game.player_o.ask_for_move(game.board))
+                except InvalidMoveException as e:
+                    game.player_o.send_message(e.message)
+                    return
+            except GameOverException as e:
+                game.player_x.send_message(game.board)
+                game.player_x.send_message(e.message)
+                game.player_o.send_message(game.board)
+                game.player_o.send_message(e.message)
                 return

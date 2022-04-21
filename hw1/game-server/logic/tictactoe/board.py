@@ -13,6 +13,9 @@ class BoardCoordinates:
         splitted = input.split(',')
         return BoardCoordinates(int(splitted[0].strip()), int(splitted[1].strip()))
 
+    def __str__(self):
+        return f"{self.row},{self.col}"
+
 
 class Board:
     SIZE = 3
@@ -81,4 +84,4 @@ class Board:
 
 class InvalidMoveException(Exception):
     def __init__(self, coord: BoardCoordinates) -> None:
-        super().__init__(f'Invalid move: {coord}')
+        self.message = f"Invalid move: {coord}"

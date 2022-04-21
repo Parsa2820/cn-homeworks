@@ -1,5 +1,6 @@
 import sys
 import getopt
+import logging
 
 from gameserver import GameServer
 
@@ -32,4 +33,5 @@ def main(argv):
 
 
 if __name__ == "__main__":
+    logging.basicConfig(level=logging.DEBUG)
     main(sys.argv[1:])

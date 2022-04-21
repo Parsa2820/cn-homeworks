@@ -11,11 +11,11 @@ class TicTacToe:
         self.player_x: Player = player_x
         self.player_o: Player = player_o
 
-    def play(self, row, col):
-        self.board.move(BoardCoordinates(row, col), self.turn)
+    def play(self, coord: BoardCoordinates):
+        self.board.move(coord, self.turn)
         self.__check_is_game_over()
         if self.game_over:
-            raise GameOverException()
+            raise GameOverException(self.winner)
         self.turn = self.turn.turn()
 
     def __check_is_game_over(self):
@@ -27,5 +27,9 @@ class TicTacToe:
 
 
 class GameOverException(Exception):
-    def __init__(self) -> None:
-        super().__init__('Game is over!')
+    def __init__(self, winner) -> None:
+        if winner is None:
+            self.message = "Game is over! It's a draw!"
+        else:
+            self.message = "Game over! Winner is " + winner.value
+        

@@ -16,7 +16,7 @@ class OnlinePlayer(Player):
         self.conn.send(f"{message}\n".encode())
 
     def __send_board(self, board: Board):
-        self.send_message(f"{board}\nPlay {self.xo}(e.g. 1,1)".encode())
+        self.send_message(f"{board}\nPlay {self.xo.value} (e.g. 1,1)")
 
     def __get_move(self):
         move = self.conn.recv(1024).decode()
