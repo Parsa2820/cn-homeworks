@@ -1,4 +1,4 @@
-from .player import Player, PlayerXO
+from .palyer.player import Player, PlayerXO
 from .board import Board, BoardCoordinates
 
 
@@ -8,8 +8,8 @@ class TicTacToe:
         self.turn = PlayerXO.X
         self.winner = None
         self.game_over = False
-        self.player_x = player_x
-        self.player_o = player_o
+        self.player_x: Player = player_x
+        self.player_o: Player = player_o
 
     def play(self, row, col):
         self.board.move(BoardCoordinates(row, col), self.turn)

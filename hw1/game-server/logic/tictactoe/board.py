@@ -1,11 +1,17 @@
 from dataclasses import dataclass
-from .player import PlayerXO
 
 
 @dataclass
 class BoardCoordinates:
     row: int
     col: int
+
+    def from_tuple(input: tuple):
+        return BoardCoordinates(input[0], input[1])
+
+    def from_str(input: str):
+        splitted = input.split(',')
+        return BoardCoordinates(int(splitted[0].strip()), int(splitted[1].strip()))
 
 
 class Board:
@@ -16,7 +22,7 @@ class Board:
         self.board = [[Board.EMPTY for _ in range(Board.SIZE)]
                       for _ in range(Board.SIZE)]
 
-    def move(self, coord: BoardCoordinates, player_xo: PlayerXO) -> None:
+    def move(self, coord: BoardCoordinates, player_xo) -> None:
         if self.__validate_move(coord):
             self.board[coord.row][coord.col] = player_xo.value
         else:

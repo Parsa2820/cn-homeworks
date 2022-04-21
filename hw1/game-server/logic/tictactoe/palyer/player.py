@@ -1,4 +1,7 @@
+from abc import ABC, abstractmethod
 from enum import Enum
+
+from ..board import Board, BoardCoordinates
 
 
 class PlayerXO(Enum):
@@ -12,7 +15,15 @@ class PlayerXO(Enum):
             return PlayerXO.X
 
 
-class Player:
+class Player(ABC):
     def __init__(self, name, xo):
         self.name = name
         self.xo = xo
+
+    @abstractmethod
+    def ask_for_move(self, board: Board) -> BoardCoordinates:
+        pass
+
+    @abstractmethod
+    def send_message(self, message):
+        pass
