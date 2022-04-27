@@ -88,12 +88,21 @@ class WebServer:
     def __find_bot_game_server(self, client_conn, addr):
         self.number_of_players += 1
         client_conn.sendall("Waitinng for free game server".encode("utf-8"))
-        gs = self.free_game_servers.get(block=True)
-        client_conn.sendall("Game server found!".encode("utf-8"))
-        server_conn = socket()
-        server_conn.connect((gs.host_addr, gs.listen_port))
-        server_conn.sendall("start_game bot".encode("utf-8"))
+        gs = None
+
+        while True:
+            try:
+                gs = self.free_game_servers.get(block=True)
+                server_conn = socket()
+                server_conn.connect((gs.host_addr, gs.listen_port))
+                server_conn.sendall("start_game bot".encode("utf-8"))
+                client_conn.sendall("Game server found!".encode("utf-8"))
+                break
+            except ConnectionRefusedError:
+                pass
+
         self.logger.info("Game started between %s and %s", addr, gs)
+        
         try:
             while True:
                 data = server_conn.recv(1024)

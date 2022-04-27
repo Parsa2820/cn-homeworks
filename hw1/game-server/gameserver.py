@@ -16,7 +16,8 @@ class GameServer:
     def __init__(self, web_server_address, web_server_port, game_server_port):
         self.logger = logging.getLogger("GameServer")
         self.game_server_port = game_server_port
-        self.__register_game_server(web_server_address, web_server_port)
+        self.web_server_address = web_server_address
+        self.web_server_port = web_server_port
 
     def run(self):
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -24,6 +25,7 @@ class GameServer:
         s.listen(5)
         self.logger.info("Game server started on port %d", self.game_server_port)
         threading.Thread(target=self.__listen_for_connection, args=(s,), daemon=True).start()
+        self.__register_game_server(self.web_server_address, self.web_server_port)
         while True:
             try:
                 _ = input()
