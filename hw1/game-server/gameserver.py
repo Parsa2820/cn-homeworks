@@ -3,29 +3,25 @@ import socket
 import re
 
 from logic.tictactoe.game import TicTacToe, GameOverException
-from logic.tictactoe.palyer.player import Player, PlayerXO
+from logic.tictactoe.palyer.player import PlayerXO
 from logic.tictactoe.palyer.online import OnlinePlayer
 from logic.tictactoe.palyer.bot import BotPlayer
-from logic.tictactoe.board import Board, BoardCoordinates, InvalidMoveException
+from logic.tictactoe.board import InvalidMoveException
 
 
 class GameServer:
-    BUFFER_SIZE = 1024
-    START_GAME_PATTERN = re.compile(
-        r"^start_game\s+(?P<mode>bot|multiplayer)$")
+    START_GAME_PATTERN = re.compile(r"^start_game\s+(?P<mode>bot|multiplayer)$")
 
     def __init__(self, web_server_address, web_server_port, game_server_port):
         self.logger = logging.getLogger("GameServer")
         self.game_server_port = game_server_port
         self.__register_game_server(web_server_address, web_server_port)
-        self.logger.info("Starting game server on port %d", game_server_port)
-        self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        self.s.bind(('localhost', game_server_port))
-        self.s.listen(5)
-        self.logger.info(
-            "Game server started listening on port %d", game_server_port)
 
     def run(self):
+        self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        self.s.bind(("", self.game_server_port))
+        self.s.listen(5)
+        self.logger.info("Game server started on port %d", self.game_server_port)
         self.__listen_for_connection()
 
     def __register_game_server(self, web_server_address, web_server_port):

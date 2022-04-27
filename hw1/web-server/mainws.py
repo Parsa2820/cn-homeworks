@@ -27,5 +27,5 @@ def main(argv):
 
 
 if __name__ == "__main__":
-    logging.basicConfig(level=logging.DEBUG)
+    logging.basicConfig(filename="webserver.log", level=logging.DEBUG)
     main(sys.argv[1:])
