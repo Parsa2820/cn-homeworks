@@ -44,10 +44,10 @@ class Board:
             or self.__has_winner_diagonal()
 
     def __has_winner_row(self) -> bool:
-        self.__has_winner_row_aux(self.board)
+        return self.__has_winner_row_aux(self.board)
 
     def __has_winner_col(self) -> bool:
-        self.__has_winner_row_aux(zip(*self.board))
+        return self.__has_winner_row_aux(zip(*self.board))
 
     def __has_winner_row_aux(self, board):
         for row in board:
