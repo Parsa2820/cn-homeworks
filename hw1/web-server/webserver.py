@@ -84,7 +84,7 @@ class WebServer:
         gs = self.free_game_servers.get(block=True)
         client_conn.sendall("Game server found!".encode("utf-8"))
         server_conn = socket()
-        server_conn.connect((gs.addr, gs.listen_port))
+        server_conn.connect((gs.host_addr, gs.listen_port))
         server_conn.sendall("start_game bot".encode("utf-8"))
         self.logger.info("Game started between %s and %s", addr, gs)
         try:

@@ -18,11 +18,11 @@ class GameServer:
         self.__register_game_server(web_server_address, web_server_port)
 
     def run(self):
-        self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        self.s.bind(("", self.game_server_port))
-        self.s.listen(5)
+        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        s.bind(("", self.game_server_port))
+        s.listen(5)
         self.logger.info("Game server started on port %d", self.game_server_port)
-        self.__listen_for_connection()
+        self.__listen_for_connection(s)
 
     def __register_game_server(self, web_server_address, web_server_port):
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -42,9 +42,9 @@ class GameServer:
         finally:
             s.close()
 
-    def __listen_for_connection(self):
+    def __listen_for_connection(self, s):
         while True:
-            conn, addr = self.s.accept()
+            conn, addr = s.accept()
             self.logger.info("Connection from %s", addr)
             try:
                 data = conn.recv(1024)

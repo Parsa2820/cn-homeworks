@@ -1,18 +1,19 @@
 import socket
 
 
+game_menu_message = """(In any menu you can type 'exit' to leave the game)
+Select an option:
+1. Play with bot
+2. Play with another player
+"""
+
+
 class GameClient:
     def __init__(self, web_server_address, web_server_port):
         self.address = web_server_address
         self.port = web_server_port
 
     def run(self):
-        game_menu_message = """
-        (In any menu you can type 'exit' to leave the game)
-        Select an option:
-        1. Play with bot
-        2. Play with another player
-        """
         mode = input(game_menu_message)
         if mode == '1':
             self.__play("bot")
