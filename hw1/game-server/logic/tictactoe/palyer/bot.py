@@ -8,7 +8,7 @@ class BotPlayer(Player):
     def __init__(self, xo):
         super().__init__("Bot", xo)
 
-    def ask_for_move(self, board: Board):
+    def ask_for_move(self, board: Board, all_chats: list):
         return self.__get_random_empty_cell(board)
 
     def send_message(self, message):

@@ -19,9 +19,10 @@ class Player(ABC):
     def __init__(self, name, xo):
         self.name = name
         self.xo = xo
+        self.chat = []
 
     @abstractmethod
-    def ask_for_move(self, board: Board) -> BoardCoordinates:
+    def ask_for_move(self, board: Board, all_chats: list) -> BoardCoordinates:
         pass
 
     @abstractmethod

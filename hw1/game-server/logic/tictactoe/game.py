@@ -1,10 +1,11 @@
-from xml.dom import InvalidAccessErr
+import logging
 from .palyer.player import Player, PlayerXO
 from .board import Board, BoardCoordinates, InvalidMoveException
 
 
 class TicTacToe:
     def __init__(self, player_x: Player, player_o: Player) -> None:
+        self.logger = logging.getLogger("TicTacToe")
         self.board: Board = Board()
         self.turn = PlayerXO.X
         self.winner = None
@@ -29,10 +30,11 @@ class TicTacToe:
     def start(self):
         while True:
             try:
+                all_chats = self.__get_all_chats()
                 if self.turn == PlayerXO.X:
-                    move = self.player_x.ask_for_move(self.board)
+                    move = self.player_x.ask_for_move(self.board, all_chats)
                 else:
-                    move = self.player_o.ask_for_move(self.board)
+                    move = self.player_o.ask_for_move(self.board, all_chats)
                 self.play(move)
             except InvalidMoveException as e:
                 self.player_x.send_message(e.message)
@@ -42,7 +44,14 @@ class TicTacToe:
             except GameOverException as e:
                 self.player_x.send_message(e.message)
                 self.player_o.send_message(e.message)
-                break     
+                break
+
+    def __get_all_chats(self):
+        all_chats = []
+        all_chats.extend(self.player_x.chat)
+        all_chats.extend(self.player_o.chat)
+        self.logger.debug("---".join(all_chats))
+        return all_chats
 
 
 

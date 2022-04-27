@@ -55,6 +55,7 @@ class Board:
                 continue
             if all(map(lambda x: x == row[0], row)):
                 return True
+        return False
 
     def __has_winner_diagonal(self) -> bool:
         main_diagonal_value = self.board[0][0]

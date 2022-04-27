@@ -103,6 +103,9 @@ class WebServer:
                 client_response = client_conn.recv(1024)
                 if not client_response:
                     break
+                while client_response.decode("utf-8").startswith("chat"):
+                    server_conn.sendall(client_response)
+                    client_response = client_conn.recv(1024)
                 server_conn.sendall(client_response)
         except Exception as e:
             self.logger.error("Error handling connection from %s: %s", addr, e)

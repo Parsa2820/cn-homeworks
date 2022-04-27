@@ -39,12 +39,15 @@ class GameClient:
                     raise Exception("Connection closed")
                 decoded_data = data.decode("utf-8")
                 print(decoded_data)
-                if "Game over" in decoded_data or "Exit" in decoded_data:
+                if "Game over" in decoded_data or "Invalid" in decoded_data:
                     break
                 msg = input('> ')
-                s.send(msg.encode())
+                while msg.startswith("chat"):
+                    s.send(msg.encode("utf-8"))
+                    msg = input('> ')
                 if msg == 'exit':
                     break
+                s.send(msg.encode("utf-8"))
         except Exception as e:
             print(f"Error: {e}")
         finally:
