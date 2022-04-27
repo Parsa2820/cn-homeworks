@@ -1,6 +1,7 @@
 import logging
 import socket
 import re
+import threading
 
 from logic.tictactoe.game import TicTacToe, GameOverException
 from logic.tictactoe.palyer.player import PlayerXO
@@ -22,7 +23,13 @@ class GameServer:
         s.bind(("", self.game_server_port))
         s.listen(5)
         self.logger.info("Game server started on port %d", self.game_server_port)
-        self.__listen_for_connection(s)
+        threading.Thread(target=self.__listen_for_connection, args=(s,), daemon=True).start()
+        while True:
+            try:
+                _ = input()
+            except KeyboardInterrupt:
+                self.logger.info("Game server stopped")
+                exit(0)
 
     def __register_game_server(self, web_server_address, web_server_port):
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)

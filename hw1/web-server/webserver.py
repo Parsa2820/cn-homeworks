@@ -23,14 +23,18 @@ class WebServer:
         self.__shell()
 
     def __shell(self):
-        command = input(">> ")
-        while command != "exit":
-            if command == "users":
-                print(self.number_of_players)
-            else:
-                print("Unknown command")
+        try:
             command = input(">> ")
-        sys.exit(0)
+            while command != "exit":
+                if command == "users":
+                    print(self.number_of_players)
+                else:
+                    print("Unknown command")
+                command = input(">> ")
+            sys.exit(0)
+        except KeyboardInterrupt:
+            print("\nExiting...")
+            sys.exit(0)
 
     def __listen_for_connection(self):
         sock = socket()
