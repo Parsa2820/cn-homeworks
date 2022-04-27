@@ -29,15 +29,15 @@ class GameServer:
         try:
             s.connect((web_server_address, web_server_port))
             message = f"register_game_server {self.game_server_port}"
-            s.sendall(message.encode())
-            acknowledge = s.recv(self.BUFFER_SIZE)
-            if acknowledge.decode().strip().lower() != "ok":
+            s.sendall(message.encode("utf-8"))
+            acknowledge = s.recv(1024)
+            if acknowledge.decode("utf-8").strip().lower() != "ok":
                 self.logger.error("Failed to register")
                 exit(1)
             else:
                 self.logger.info("Game server registered with the web server")
-        except ConnectionRefusedError:
-            self.logger.error("Failed to connect to the web server")
+        except Exception as e:
+            self.logger.error("Failed to register: %s", e)
             exit(1)
         finally:
             s.close()
@@ -46,16 +46,20 @@ class GameServer:
         while True:
             conn, addr = self.s.accept()
             self.logger.info("Connection from %s", addr)
-            data = conn.recv(GameServer.BUFFER_SIZE)
-            if not data:
-                continue
-            command = data.decode("utf-8").strip()
-            self.logger.debug("Received data: %s", command)
-            if GameServer.START_GAME_PATTERN.match(command):
-                self.__start_game(conn, addr, command)
-            else:
-                conn.sendall(b"Unknown command\nBye\n")
-            conn.close()
+            try:
+                data = conn.recv(1024)
+                if not data:
+                    continue
+                command = data.decode("utf-8").strip()
+                self.logger.debug("Received data '%s' from %s", command, addr)
+                if GameServer.START_GAME_PATTERN.match(command):
+                    self.__start_game(conn, addr, command)
+                else:
+                    conn.sendall("Unknown command".encode("utf-8"))
+            except Exception as e:
+                self.logger.error("Failed to process request: %s", e)
+            finally:
+                conn.close()
 
     def __start_game(self, conn, addr, command):
         m = GameServer.START_GAME_PATTERN.match(command)
@@ -65,41 +69,13 @@ class GameServer:
         elif mode == "multiplayer":
             self.__start_with_multiplayer(conn, addr)
         else:
-            conn.sendall(b"Unknown mode\n")
+            conn.sendall("Unknown mode".encode("utf-8"))
 
     def __start_with_bot(self, conn, addr):
-        bot = BotPlayer(PlayerXO.X)
-        onlinePlayer = OnlinePlayer(addr, PlayerXO.O, conn, addr)
-        game = TicTacToe(bot, onlinePlayer)
-        self.__play_game(game)
+        onlinePlayer = OnlinePlayer(addr, PlayerXO.X, conn, addr)
+        bot = BotPlayer(PlayerXO.O)
+        game = TicTacToe(onlinePlayer, bot)
+        game.start()
 
     def __start_with_multiplayer(self, conn, addr):
-        # # wait for other player to connect
-        # conn.sendall(b"Waiting for other player to connect ...\n")
-        # conn2, addr2 = self.s.accept()
-        # conn.sendall(b"Other player connected\n")
-        # player1 = Player(addr, PlayerXO.X)
-        # player2 = Player(addr2, PlayerXO.O)
-        # game = Game(player1, player2)
-        # self.__play_game(game)
         pass
-
-    def __play_game(self, game: TicTacToe):
-        while True:
-            try:
-                try:
-                    game.play(game.player_x.ask_for_move(game.board))
-                except InvalidMoveException as e:
-                    game.player_x.send_message(e.message)
-                    return
-                try:
-                    game.play(game.player_o.ask_for_move(game.board))
-                except InvalidMoveException as e:
-                    game.player_o.send_message(e.message)
-                    return
-            except GameOverException as e:
-                game.player_x.send_message(game.board)
-                game.player_x.send_message(e.message)
-                game.player_o.send_message(game.board)
-                game.player_o.send_message(e.message)
-                return

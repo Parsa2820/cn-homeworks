@@ -1,5 +1,5 @@
 from .player import Player
-from ..board import Board, BoardCoordinates
+from ..board import Board, BoardCoordinates, InvalidMoveException
 
 
 class OnlinePlayer(Player):
@@ -19,5 +19,8 @@ class OnlinePlayer(Player):
         self.send_message(f"{board}\nPlay {self.xo.value} (e.g. 1,1)")
 
     def __get_move(self):
-        move = self.conn.recv(1024).decode()
-        return BoardCoordinates.from_str(move)
+        try:
+            move = self.conn.recv(1024).decode()
+            return BoardCoordinates.from_str(move)
+        except:
+            raise InvalidMoveException("Connection lost")

@@ -1,5 +1,6 @@
+from xml.dom import InvalidAccessErr
 from .palyer.player import Player, PlayerXO
-from .board import Board, BoardCoordinates
+from .board import Board, BoardCoordinates, InvalidMoveException
 
 
 class TicTacToe:
@@ -15,7 +16,7 @@ class TicTacToe:
         self.board.move(coord, self.turn)
         self.__check_is_game_over()
         if self.game_over:
-            raise GameOverException(self.winner)
+            raise GameOverException(self.board, self.winner)
         self.turn = self.turn.turn()
 
     def __check_is_game_over(self):
@@ -25,11 +26,31 @@ class TicTacToe:
         elif self.board.is_full():
             self.game_over = True
 
+    def start(self):
+        while True:
+            try:
+                if self.turn == PlayerXO.X:
+                    move = self.player_x.ask_for_move(self.board)
+                else:
+                    move = self.player_o.ask_for_move(self.board)
+                self.play(move)
+            except InvalidMoveException as e:
+                self.player_x.send_message(e.message)
+                self.player_o.send_message(e.message)
+                self.game_over = True
+                break
+            except GameOverException as e:
+                self.player_x.send_message(e.message)
+                self.player_o.send_message(e.message)
+                break     
+
+
 
 class GameOverException(Exception):
-    def __init__(self, winner) -> None:
+    def __init__(self, board, winner) -> None:
+        self.message = str(board)
+        self.message += '\n'
         if winner is None:
-            self.message = "Game is over! It's a draw!"
+            self.message += "Game is over! It's a draw!"
         else:
-            self.message = "Game over! Winner is " + winner.value
-        
+            self.message += "Game over! Winner is " + winner.value        
