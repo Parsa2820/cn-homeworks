@@ -28,13 +28,20 @@ class GameClient:
     def __play(self, mode):
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         s.connect((self.address, self.port))
-        s.send(f"find_game_server {mode}".encode())
-        print(s.recv(1024).decode())
-        print(s.recv(1024).decode())
-        while True:
-            data = s.recv(1024)
-            print(data.decode())
-            if not data:
-                break
-            msg = input('> ')
-            s.send(msg.encode())
+        try:
+            s.send(f"find_game_server {mode}".encode("utf-8"))
+            print(s.recv(1024).decode("utf-8"))
+            print(s.recv(1024).decode("utf-8"))
+            while True:
+                data = s.recv(1024)
+                print(data.decode())
+                if not data:
+                    break
+                msg = input('> ')
+                s.send(msg.encode())
+                if msg == 'exit':
+                    break
+        except Exception as e:
+            print(f"Error: {e}")
+        finally:
+            s.close()

@@ -23,4 +23,4 @@ class OnlinePlayer(Player):
             move = self.conn.recv(1024).decode()
             return BoardCoordinates.from_str(move)
         except:
-            raise InvalidMoveException("Connection lost")
+            raise InvalidMoveException("Connection lost or invalid move. Exiting...")
