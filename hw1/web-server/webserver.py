@@ -15,6 +15,7 @@ class WebServer:
         self.port = port
         self.free_game_servers = Queue()
         self.number_of_players = 0
+        self.sock = None
 
     def run(self) -> None:
         self.logger.info("Starting web server on port %d", self.port)
@@ -34,14 +35,15 @@ class WebServer:
             sys.exit(0)
         except KeyboardInterrupt:
             print("\nExiting...")
+            self.sock.close()
             sys.exit(0)
 
     def __listen_for_connection(self):
-        sock = socket()
-        sock.bind(("", self.port))
-        sock.listen(5)
+        self.sock = socket()
+        self.sock.bind(("", self.port))
+        self.sock.listen(5)
         while True:
-            conn, addr = sock.accept()
+            conn, addr = self.sock.accept()
             self.logger.info("Connection from %s", addr)
             thread = Thread(target=self.__handle_connection, args=(conn, addr), daemon=True)
             thread.start()
@@ -61,6 +63,7 @@ class WebServer:
                 conn.sendall("Unknown command".encode("utf-8"))
         except Exception as e:
             self.logger.error("Error handling connection from %s: %s", addr, e)
+            self.logger.exception(e)
         finally:
             conn.close()
             self.logger.info("Connection from %s closed", addr)
@@ -103,6 +106,7 @@ class WebServer:
                 server_conn.sendall(client_response)
         except Exception as e:
             self.logger.error("Error handling connection from %s: %s", addr, e)
+            self.logger.exception(e)
         finally:
             server_conn.close()
             self.logger.info("Game between %s and %s finished", addr, gs)

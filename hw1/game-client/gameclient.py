@@ -35,8 +35,11 @@ class GameClient:
             print(s.recv(1024).decode("utf-8"))
             while True:
                 data = s.recv(1024)
-                print(data.decode())
                 if not data:
+                    raise Exception("Connection closed")
+                decoded_data = data.decode("utf-8")
+                print(decoded_data)
+                if "Game over" in decoded_data or "Exit" in decoded_data:
                     break
                 msg = input('> ')
                 s.send(msg.encode())

@@ -51,6 +51,6 @@ class GameOverException(Exception):
         self.message = str(board)
         self.message += '\n'
         if winner is None:
-            self.message += "Game is over! It's a draw!"
+            self.message += "Game over! It's a draw!"
         else:
             self.message += "Game over! Winner is " + winner.value        

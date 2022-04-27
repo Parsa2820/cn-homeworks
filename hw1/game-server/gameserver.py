@@ -29,6 +29,7 @@ class GameServer:
                 _ = input()
             except KeyboardInterrupt:
                 self.logger.info("Game server stopped")
+                s.close()
                 exit(0)
 
     def __register_game_server(self, web_server_address, web_server_port):
