@@ -1,6 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <string.h>
+#include <unistd.h>
+
+#define TIMEOUT 60
 
 /* The simulated network environment
  *
@@ -63,6 +67,26 @@ struct pkt
   int acknum;
   int checksum;
   char payload[20];
+} last_packet;
+
+enum A_state_enum
+{
+  A_STATE_ENUM_WAIT_FOR_CALL_0_FROM_ABBOVE,
+  A_STATE_ENUM_WAIT_FOR_ACK_0,
+  A_STATE_ENUM_WAIT_FOR_CALL_1_FROM_ABBOVE,
+  A_STATE_ENUM_WAIT_FOR_ACK_1
+} A_state = A_STATE_ENUM_WAIT_FOR_CALL_0_FROM_ABBOVE;
+
+enum B_state_enum
+{
+  B_STATE_ENUM_WAIT_FOR_0_FROM_BELLOW,
+  B_STATE_ENUM_WAIT_FOR_1_FROM_BELLOW
+} B_state = B_STATE_ENUM_WAIT_FOR_0_FROM_BELLOW;
+
+enum AorB_enum
+{
+  AorB_ENUM_A,
+  AorB_ENUM_B
 };
 
 /* Prototypes of callable routines */
@@ -98,23 +122,130 @@ void tolayer5(int calling_node, struct msg message);
 
 /********* YOU SHOULD WRITE THE NEXT SEVEN ROUTINES *********/
 
+int checksum(packet)
+struct pkt packet;
+{
+  int sum = 0;
+
+  for (int i = 0; i < 20; i++)
+  {
+    sum += packet.payload[i];
+  }
+
+  sum += packet.seqnum;
+  sum += packet.acknum;
+  return sum;
+}
+
+int check(packet)
+struct pkt packet;
+{
+  return (checksum(packet) == packet.checksum);
+}
+
+struct pkt make_packet(seqnum, acknum, payload)
+int seqnum;
+int acknum;
+char *payload;
+{
+  struct pkt packet;
+  packet.seqnum = seqnum;
+  packet.acknum = acknum;
+  packet.checksum = checksum(packet);
+  strcpy(packet.payload, payload);
+  return packet;
+}
+
+struct msg make_message(payload)
+char *payload;
+{
+  struct msg message;
+  strcpy(message.data, payload);
+  return message;
+}
+
 /* called from layer 5, passed the data to be sent to other side. Return a 1 if
 data is accepted for transmission, negative number otherwise */
 int A_output(message)
 struct msg message;
 {
+  int seqnum;
+  enum A_state_enum next_state;
 
+  switch (A_state)
+  {
+  case A_STATE_ENUM_WAIT_FOR_CALL_0_FROM_ABBOVE:
+    seqnum = 0;
+    next_state = A_STATE_ENUM_WAIT_FOR_ACK_0;
+    break;
+  
+  case A_STATE_ENUM_WAIT_FOR_CALL_1_FROM_ABBOVE:
+    seqnum = 1;
+    next_state = A_STATE_ENUM_WAIT_FOR_ACK_1;
+    break;
+
+  default:
+    printf("Invalid state for A_output\n");
+    return -1;
+  }
+
+  A_state = next_state;
+  last_packet = make_packet(seqnum, 0, message.data);
+  tolayer3(AorB_ENUM_A, last_packet);
+  starttimer(AorB_ENUM_A, TIMEOUT);
   return 1;
 }
 
 /* called from layer 3, when a packet arrives for layer 4 */
 void A_input(packet) struct pkt packet;
 {
+  int acknum;
+  enum A_state_enum next_state;
+
+  switch (A_state)
+  {
+  case A_STATE_ENUM_WAIT_FOR_ACK_0:
+    acknum = 0;
+    next_state = A_STATE_ENUM_WAIT_FOR_CALL_1_FROM_ABBOVE;
+    break;
+
+  case A_STATE_ENUM_WAIT_FOR_ACK_1:
+    acknum = 1;
+    next_state = A_STATE_ENUM_WAIT_FOR_CALL_0_FROM_ABBOVE;
+    break;
+
+  default:
+    printf("Invalid state for A_input\n");
+    return;
+  }
+
+  if (packet.acknum == acknum && check(packet))
+  {
+    stoptimer(AorB_ENUM_A);
+    A_state = next_state;
+    tolayer5(AorB_ENUM_A, make_message(packet.payload));
+  }
+  else
+  {
+    printf("Invalid packet received from A_input\n");
+  }
 }
 
 /* called when A's timer goes off */
 void A_timerinterrupt()
 {
+  switch (A_state)
+  {
+  case A_STATE_ENUM_WAIT_FOR_ACK_0:
+  case A_STATE_ENUM_WAIT_FOR_ACK_1:
+    tolayer3(AorB_ENUM_A, last_packet);
+    starttimer(AorB_ENUM_A, TIMEOUT);
+    break;
+
+  default:
+    printf("Invalid state for A_timerinterrupt\n");
+    return;
+  }
 }
 
 /* the following routine will be called once (only) before any other */
@@ -126,11 +257,63 @@ void A_init()
 /* called from layer 3, when a packet arrives for layer 4 at B*/
 void B_input(packet) struct pkt packet;
 {
+  int seqnum;
+  enum B_state_enum next_state;
+
+  switch (B_state)
+  {
+  case B_STATE_ENUM_WAIT_FOR_0_FROM_BELLOW:
+    seqnum = 0;
+    next_state = B_STATE_ENUM_WAIT_FOR_1_FROM_BELLOW;
+    break;
+
+  case B_STATE_ENUM_WAIT_FOR_1_FROM_BELLOW:
+    seqnum = 1;
+    next_state = B_STATE_ENUM_WAIT_FOR_0_FROM_BELLOW;
+    break;
+
+  default:
+    printf("Invalid state for B_input\n");
+    return;
+  }
+
+  if (packet.seqnum == seqnum)
+  {
+    if (check(packet))
+    {
+      B_state = next_state;
+      tolayer5(AorB_ENUM_B, make_message(packet.payload));
+      last_packet = make_packet(0, seqnum, "");
+      tolayer3(AorB_ENUM_B, last_packet);
+      B_state = next_state;
+      starttimer(AorB_ENUM_B, TIMEOUT);
+    }
+    else
+    {
+      printf("Corrupted packet received from B_input\n");
+    }
+  }
+  else
+  {
+    printf("Packet with invalid seqnum received from B_input\n");
+  }
 }
 
 /* called when B's timer goes off */
 void B_timerinterrupt()
 {
+  switch (B_state)
+  {
+  case B_STATE_ENUM_WAIT_FOR_0_FROM_BELLOW:
+  case B_STATE_ENUM_WAIT_FOR_1_FROM_BELLOW:
+    tolayer3(AorB_ENUM_B, last_packet);
+    starttimer(AorB_ENUM_B, TIMEOUT);
+    break;
+
+  default:
+    printf("Invalid state for B_timerinterrupt\n");
+    return;
+  }
 }
 
 /* the following rouytine will be called once (only) before any other */
@@ -455,6 +638,14 @@ void init()
   int i;
   float sum, avg;
 
+#ifdef DEBUG
+  nsimmax = 10;
+  lossprob = 0.2;
+  corruptprob = 0.2;
+  lambda = 10.0;
+  randseed = 1;
+  TRACE = 2;
+#else
   printf("-----  Stop and Wait Network Simulator -------- \n\n");
   printf("Enter the number of messages to simulate: ");
   scanf("%d", &nsimmax);
@@ -468,6 +659,7 @@ void init()
   scanf("%d", &randseed);
   printf("Enter TRACE [0,1,2,3]: ");
   scanf("%d", &TRACE);
+#endif
 
   /* init random number generator */
   init_random(randseed);
@@ -513,6 +705,9 @@ int main(void)
   /* loop forever... */
   while (1)
   {
+#ifdef DEBUG
+    sleep(3);
+#endif
     eventptr = evlist; /* get next event to simulate */
     if (eventptr == NULL)
     {
