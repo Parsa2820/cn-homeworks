@@ -1,8 +1,15 @@
 CC=gcc
-CFLAGS=-Wall -Wextra -Werror
+CFLAGS=-Wextra -Werror
+SRC=$(wildcard *.c)
+EXECUTABLE=$(SRC:.c=)
 
-simulator:
-	$(CC) $(CFLAGS) -o simulator.out simulator.c
+all: $(EXECUTABLE)
+
+debug: CFLAGS += -DDEBUG
+debug: all
+
+$(EXECUTABLE): $(SRC)
+	$(CC) $(CFLAGS) -o $@ $<
 
 clean:
-	rm -f simulator.out
+	rm -f $(EXECUTABLE)
