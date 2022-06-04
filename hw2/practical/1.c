@@ -293,6 +293,7 @@ void B_input(packet) struct pkt packet;
       last_packet = make_packet(0, seqnum, "");
       tolayer3(AorB_ENUM_B, last_packet);
       B_state = next_state;
+      stoptimer(AorB_ENUM_B);
       starttimer(AorB_ENUM_B, TIMEOUT);
     }
     else
