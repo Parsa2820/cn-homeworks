@@ -82,6 +82,7 @@ enum AorB_enum
   AorB_ENUM_B = 1
 };
 
+/* These global variables should be gathered into a struct. But I'm lazy. */
 int A_window_start = 0;
 int A_next_sequence_number = 0;
 int A_ack_number = 0;
