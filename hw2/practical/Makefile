@@ -5,7 +5,7 @@ EXECUTABLE=$(SRC:.c=)
 
 all: $(EXECUTABLE)
 
-debug: CFLAGS += -DDEBUG
+debug: CFLAGS += -DDEBUG -g
 debug: all
 
 $(EXECUTABLE): $(SRC)
