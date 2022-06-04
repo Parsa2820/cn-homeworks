@@ -85,8 +85,8 @@ enum B_state_enum
 
 enum AorB_enum
 {
-  AorB_ENUM_A,
-  AorB_ENUM_B
+  AorB_ENUM_A = 0,
+  AorB_ENUM_B = 1
 };
 
 /* Prototypes of callable routines */
@@ -151,8 +151,8 @@ char *payload;
   struct pkt packet;
   packet.seqnum = seqnum;
   packet.acknum = acknum;
-  packet.checksum = checksum(packet);
   strcpy(packet.payload, payload);
+  packet.checksum = checksum(packet);
   return packet;
 }
 
@@ -219,15 +219,22 @@ void A_input(packet) struct pkt packet;
     return;
   }
 
-  if (packet.acknum == acknum && check(packet))
+  if (packet.acknum == acknum)
   {
-    stoptimer(AorB_ENUM_A);
-    A_state = next_state;
-    tolayer5(AorB_ENUM_A, make_message(packet.payload));
+    if (check(packet))
+    {
+      stoptimer(AorB_ENUM_A);
+      A_state = next_state;
+      tolayer5(AorB_ENUM_A, make_message(packet.payload));
+    }
+    else
+    {
+      printf("Corrupted packet received from A_input\n");
+    }
   }
   else
   {
-    printf("Invalid packet received from A_input\n");
+    printf("packet with invalid acknum received from A_input\n");
   }
 }
 
@@ -639,11 +646,11 @@ void init()
   float sum, avg;
 
 #ifdef DEBUG
-  nsimmax = 10;
-  lossprob = 0.2;
-  corruptprob = 0.2;
+  nsimmax = 2;
+  lossprob = 0.0;
+  corruptprob = 0.0;
   lambda = 10.0;
-  randseed = 1;
+  randseed = 2820;
   TRACE = 2;
 #else
   printf("-----  Stop and Wait Network Simulator -------- \n\n");
@@ -706,7 +713,7 @@ int main(void)
   while (1)
   {
 #ifdef DEBUG
-    sleep(3);
+    sleep(0);
 #endif
     eventptr = evlist; /* get next event to simulate */
     if (eventptr == NULL)
