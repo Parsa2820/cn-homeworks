@@ -72,6 +72,8 @@ struct pkt
 };
 
 struct pkt *A_window[WINDOW_SIZE];
+struct pkt *A_last_ack;
+struct pkt *B_window[WINDOW_SIZE];
 struct pkt *B_last_ack;
 
 enum AorB_enum
@@ -80,8 +82,12 @@ enum AorB_enum
   AorB_ENUM_B = 1
 };
 
+/* These global variables should be gathered into a struct. But I'm lazy. */
 int A_window_start = 0;
 int A_next_sequence_number = 0;
+int A_ack_number = 0;
+int B_window_start = 0;
+int B_next_sequence_number = 0;
 int B_ack_number = 0;
 
 /* Prototypes of callable routines */
@@ -169,7 +175,7 @@ struct msg message;
     return -1;
   }
 
-  struct pkt *packet = make_packet(A_next_sequence_number, 0, message.data);
+  struct pkt *packet = make_packet(A_next_sequence_number, A_ack_number, message.data);
   tolayer3(AorB_ENUM_A, *packet);
   int index = A_next_sequence_number - A_window_start;
   assert(index >= 0 && index < WINDOW_SIZE);
@@ -185,17 +191,19 @@ struct msg message;
   return 1;
 }
 
-void proceed_window(distance)
+void proceed_window(window, window_start, distance)
+struct pkt *window[WINDOW_SIZE];
+int *window_start;
 int distance;
 {
   for (int i = 0; i < WINDOW_SIZE - distance; i++)
   {
-    free(A_window[i]);
-    A_window[i] = A_window[i + distance];
-    A_window[i + distance] = NULL;
+    free(window[i]);
+    window[i] = window[i + distance];
+    window[i + distance] = NULL;
   }
 
-  A_window_start += distance;
+  *window_start += distance;
 }
 
 /* called from layer 3, when a packet arrives for layer 4 */
@@ -210,9 +218,21 @@ void A_input(packet) struct pkt packet;
 
   if (distance > 0)
   {
-    proceed_window(distance);
-    stoptimer(AorB_ENUM_A);
+    proceed_window(A_window, &A_window_start, distance);
+  }
+
+  if (packet.seqnum == A_ack_number)
+  {
     tolayer5(AorB_ENUM_A, *make_message(packet.payload));
+    A_last_ack = make_packet(0, A_ack_number, "");
+    tolayer3(AorB_ENUM_A, *A_last_ack);
+    stoptimer(AorB_ENUM_A);
+    starttimer(AorB_ENUM_A, TIMEOUT);
+  }
+  else
+  {
+    A_last_ack = make_packet(0, A_ack_number, "");
+    tolayer3(AorB_ENUM_A, *A_last_ack);
   }
 }
 
@@ -224,6 +244,7 @@ void A_timerinterrupt()
     tolayer3(AorB_ENUM_A, *A_window[i]);
   }
 
+  tolayer3(AorB_ENUM_A, *A_last_ack);
   starttimer(AorB_ENUM_A, TIMEOUT);
 }
 
@@ -240,6 +261,14 @@ void B_input(packet) struct pkt packet;
   {
     printf("Corrupted packet received from B_input\n");
   }
+
+  int distance = packet.acknum - B_window_start + 1;
+
+  if (distance > 0)
+  {
+    proceed_window(B_window, &B_window_start, distance);
+  }
+
   if (packet.seqnum == B_ack_number)
   {
     tolayer5(AorB_ENUM_B, *make_message(packet.payload));
@@ -253,11 +282,20 @@ void B_input(packet) struct pkt packet;
     B_last_ack = make_packet(0, B_ack_number, "");
     tolayer3(AorB_ENUM_B, *B_last_ack);
   }
+  {
+    B_last_ack = make_packet(0, B_ack_number, "");
+    tolayer3(AorB_ENUM_B, *B_last_ack);
+  }
 }
 
 /* called when B's timer goes off */
 void B_timerinterrupt()
 {
+  for (int i = 0; i < WINDOW_SIZE && B_window[i] != NULL; i++)
+  {
+    tolayer3(AorB_ENUM_B, *A_window[i]);
+  }
+
   tolayer3(AorB_ENUM_B, *B_last_ack);
   starttimer(AorB_ENUM_B, TIMEOUT);
 }
@@ -296,7 +334,7 @@ struct event
 struct event *evlist = NULL; /* the event list */
 
 /* use for bidirectional transfer of data */
-#define BIDIRECTIONAL 0
+#define BIDIRECTIONAL 1
 
 /* possible events: */
 #define TIMER_INTERRUPT 0
@@ -322,8 +360,25 @@ int randseed;             /* random number seed */
 int B_output(message) /* need be completed only for extra credit */
 struct msg message;
 {
+  if (B_next_sequence_number >= WINDOW_SIZE + B_window_start)
+  {
+    return -1;
+  }
 
-  return 0;
+  struct pkt *packet = make_packet(B_next_sequence_number, B_ack_number, message.data);
+  tolayer3(AorB_ENUM_B, *packet);
+  int index = B_next_sequence_number - B_window_start;
+  assert(index >= 0 && index < WINDOW_SIZE);
+  assert(B_window[index] == NULL);
+  B_window[index] = packet;
+
+  if (B_next_sequence_number == B_window_start)
+  {
+    starttimer(AorB_ENUM_B, TIMEOUT);
+  }
+  
+  B_next_sequence_number++;
+  return 1;
 }
 
 /****************** EVENT LIST ROUTINE  *************/
