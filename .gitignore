@@ -507,4 +507,6 @@ dkms.conf
 
 # End of https://www.toptal.com/developers/gitignore/api/c
 
-hw2/practical/1
+hw2/practical/a
+hw2/practical/b
+hw2/practical/c
