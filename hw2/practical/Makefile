@@ -1,15 +1,19 @@
 CC=gcc
 CFLAGS=-Wextra -Werror
-SRC=$(wildcard *.c)
-EXECUTABLE=$(SRC:.c=)
 
-all: $(EXECUTABLE)
+all: a b c
 
 debug: CFLAGS += -DDEBUG -g
 debug: all
 
-$(EXECUTABLE): $(SRC)
-	$(CC) $(CFLAGS) -o $@ $<
+a:
+	$(CC) $(CFLAGS) -o a a.c
+
+b:
+	$(CC) $(CFLAGS) -o b b.c
+
+c:
+	$(CC) $(CFLAGS) -o c c.c
 
 clean:
-	rm -f $(EXECUTABLE)
+	rm -f a b c
