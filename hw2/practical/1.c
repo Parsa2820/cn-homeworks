@@ -67,7 +67,9 @@ struct pkt
   int acknum;
   int checksum;
   char payload[20];
-} last_packet;
+};
+
+struct pkt *last_packet;
 
 enum A_state_enum
 {
@@ -143,24 +145,24 @@ struct pkt packet;
   return (checksum(packet) == packet.checksum);
 }
 
-struct pkt make_packet(seqnum, acknum, payload)
+struct pkt *make_packet(seqnum, acknum, payload)
 int seqnum;
 int acknum;
 char *payload;
 {
-  struct pkt packet;
-  packet.seqnum = seqnum;
-  packet.acknum = acknum;
-  strcpy(packet.payload, payload);
-  packet.checksum = checksum(packet);
+  struct pkt *packet = malloc(sizeof(struct pkt));
+  packet->seqnum = seqnum;
+  packet->acknum = acknum;
+  strcpy(packet->payload, payload);
+  packet->checksum = checksum(*packet);
   return packet;
 }
 
-struct msg make_message(payload)
+struct msg *make_message(payload)
 char *payload;
 {
-  struct msg message;
-  strcpy(message.data, payload);
+  struct msg *message = malloc(sizeof(struct msg));
+  strcpy(message->data, payload);
   return message;
 }
 
@@ -191,7 +193,7 @@ struct msg message;
 
   A_state = next_state;
   last_packet = make_packet(seqnum, 0, message.data);
-  tolayer3(AorB_ENUM_A, last_packet);
+  tolayer3(AorB_ENUM_A, *last_packet);
   starttimer(AorB_ENUM_A, TIMEOUT);
   return 1;
 }
@@ -225,7 +227,7 @@ void A_input(packet) struct pkt packet;
     {
       stoptimer(AorB_ENUM_A);
       A_state = next_state;
-      tolayer5(AorB_ENUM_A, make_message(packet.payload));
+      tolayer5(AorB_ENUM_A, *make_message(packet.payload));
     }
     else
     {
@@ -245,7 +247,7 @@ void A_timerinterrupt()
   {
   case A_STATE_ENUM_WAIT_FOR_ACK_0:
   case A_STATE_ENUM_WAIT_FOR_ACK_1:
-    tolayer3(AorB_ENUM_A, last_packet);
+    tolayer3(AorB_ENUM_A, *last_packet);
     starttimer(AorB_ENUM_A, TIMEOUT);
     break;
 
@@ -289,9 +291,9 @@ void B_input(packet) struct pkt packet;
     if (check(packet))
     {
       B_state = next_state;
-      tolayer5(AorB_ENUM_B, make_message(packet.payload));
+      tolayer5(AorB_ENUM_B, *make_message(packet.payload));
       last_packet = make_packet(0, seqnum, "");
-      tolayer3(AorB_ENUM_B, last_packet);
+      tolayer3(AorB_ENUM_B, *last_packet);
       B_state = next_state;
       stoptimer(AorB_ENUM_B);
       starttimer(AorB_ENUM_B, TIMEOUT);
@@ -314,7 +316,7 @@ void B_timerinterrupt()
   {
   case B_STATE_ENUM_WAIT_FOR_0_FROM_BELLOW:
   case B_STATE_ENUM_WAIT_FOR_1_FROM_BELLOW:
-    tolayer3(AorB_ENUM_B, last_packet);
+    tolayer3(AorB_ENUM_B, *last_packet);
     starttimer(AorB_ENUM_B, TIMEOUT);
     break;
 
@@ -714,7 +716,7 @@ int main(void)
   while (1)
   {
 #ifdef DEBUG
-    sleep(0);
+    sleep(3);
 #endif
     eventptr = evlist; /* get next event to simulate */
     if (eventptr == NULL)
