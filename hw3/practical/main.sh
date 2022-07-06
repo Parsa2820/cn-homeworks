@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 # This script offer a simple interface to configure iptables firewall.
-# In order to run this script, you need to have iptables installed.
+# In order to run this script, you need to have iptables, systemd, and openssh-server installed.
 # Tested on Debian GNU/Linux 11 and iptables v1.8.7.
 # Run this script with sufficient privileges.
 
@@ -32,15 +32,6 @@ main_menu_functions=(
     show_all_rules
     flush_all_rules
     hi
-)
-
-block_traffic_ip_url_port_menu_functions=(
-    block_traffic_from_ip
-    block_traffic_to_ip
-    block_traffic_from_domain
-    block_traffic_to_domain
-    block_traffic_from_port
-    block_traffic_to_port
 )
 
 block_traffic_count_protocol_request_type_menu_items=(
@@ -118,7 +109,7 @@ ask_traffic_type() {
 #######################################
 log_and_evaluate() {
     echo "$1"
-    $1
+    eval $1
 }
 
 #######################################
@@ -224,6 +215,13 @@ flush_all_rules() {
 }
 
 #######################################
+# Hi
+#######################################
+hi() {
+    echo "Hi"
+}
+
+#######################################
 # Block specfic file in FTP protocol
 #######################################
 block_traffic_count_protocol_request_type_ftp() {
@@ -233,11 +231,15 @@ block_traffic_count_protocol_request_type_ftp() {
 }
 
 #######################################
-# Hi
+# Block incoming ssh to specfic user
 #######################################
-hi() {
-    echo "Hi"
+block_traffic_count_protocol_request_type_ssh() {
+    echo -n "Enter the user to block: "
+    read -r user
+    log_and_evaluate "echo \"DenyUsers $user\" >> /etc/ssh/sshd_config"
+    log_and_evaluate "systemctl restart ssh.service"
 }
+
 
 #######################################
 # Show main menu.
