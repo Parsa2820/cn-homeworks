@@ -240,6 +240,14 @@ block_traffic_count_protocol_request_type_ssh() {
     log_and_evaluate "systemctl restart ssh.service"
 }
 
+#######################################
+# Block DNS requests to specfic domain
+#######################################
+block_traffic_count_protocol_request_type_dns() {
+    echo -n "Enter the domain to block: "
+    read -r domain
+    log_and_evaluate "iptables -A OUTPUT -p udp --dport 53 -m string --algo bm --string $domain -j DROP"
+}
 
 #######################################
 # Show main menu.
