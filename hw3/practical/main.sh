@@ -6,13 +6,18 @@
 # Run this script with sufficient privileges.
 
 
+traffic_types=(INPUT OUTPUT)
+
+debug_mode=true
+
 main_menu_items=(
-    "Block incoming/outgoing traffic to/from a specific IP, domain RegEx URL, or port."
+    "Block incoming/outgoing traffic to a specific IP, domain RegEx URL, or port."
     "Block incoming/outgoing traffic base on count, protocol, and request type."
     "Block traffic if header contains a specific string."
     "Config DoS attack prevention."
     "Use DB to improve DoS attack prevention."
     "Block port scan and port knocking."
+    "Show all rules."
     "Flush all rules."
     "Hi."
 )
@@ -24,20 +29,12 @@ main_menu_functions=(
     config_dos_attack_prevention
     use_db_improve_dos_attack_prevention
     block_port_scan_and_port_knocking
+    show_all_rules
     flush_all_rules
     hi
 )
 
-block_traffic_menu_items=(
-    "Block incoming traffic from IP"
-    "Block outgoing traffic to IP"
-    "Block incoming traffic from domain RegEx URL"
-    "Block outgoing traffic to domain RegEx URL"
-    "Block incoming traffic from port"
-    "Block outgoing traffic to port"
-)
-
-block_traffic_menu_functions=(
+block_traffic_ip_url_port_menu_functions=(
     block_traffic_from_ip
     block_traffic_to_ip
     block_traffic_from_domain
@@ -80,6 +77,7 @@ echo_menu() {
     done
     echo -n "Please enter your choice: "
     read -r choice
+    echo
     if [[ $choice -eq 0 ]]; then
         echo "Exiting..."
         exit 0
@@ -94,20 +92,17 @@ echo_menu() {
 #######################################
 # Get traffic type from user.
 # Returns:
-#   Traffic type (INPUT, OUTPUT, FORWARD), a string.
+#   Traffic type (INPUT, OUTPUT), a string.
 #######################################
 ask_traffic_type() {
-    echo "Enter traffic type(incoming[i], outgoing[o], forward[f]): "
+    echo -n "Enter traffic type(incoming[i], outgoing[o]): "
     read -r traffic_type
     case $traffic_type in
         i)
-            return "INPUT"
+            return 0
             ;;
         o)
-            return "OUTPUT"
-            ;;
-        f)
-            return "FORWARD"
+            return 1
             ;;
         *)
             echo "Invalid traffic type."
@@ -117,12 +112,57 @@ ask_traffic_type() {
 }
 
 #######################################
-# Block incoming/outgoing traffic to/from a specific IP, domain RegEx URL, or port.
+# Log the input string and evaluate it.
+# Arguments:
+#   $1: input string, a string.
+#######################################
+log_and_evaluate() {
+    echo "$1"
+    $1
+}
+
+#######################################
+# Block incoming/outgoing traffic to a specific IP, domain RegEx URL, or port.
+# ptables -A FORWARD -m string --algo bm --string "hostname" -j ACCEPT
 #######################################
 block_traffic_ip_url_port() {
     clear
-    echo_menu "${block_traffic_menu_items[@]}"
-    ${block_traffic_menu_functions[ $(( $? - 1 )) ]}
+    ask_traffic_type
+    local traffic_type=${traffic_types[$?]}
+    echo -n "Enter IP address (-1 if empty): "
+    read -r ip
+    echo -n "Enter domain RegEx URL (-1 if empty): "
+    read -r domain_url
+    echo -n "Enter port (-1 if empty): "
+    read -r port
+    if [[ $ip = "-1" && $domain_url = "-1" && $port = "-1" ]]; then
+        echo "Invalid input. All fields are empty."
+        exit 1
+    fi
+    local ip_flag=""
+    local ip_rule=""
+    local domain_url_flag="-m string --algo bm --string"
+    local domain_url_rule=""
+    local port_flag="--dport"
+    local port_rule=""
+    if [[ $traffic_type = "INPUT" ]]; then
+        ip_flag="-s"
+    else # OUTPUT
+        ip_flag="-d"
+    fi
+    if [[ $ip != "-1" ]]; then
+        ip_rule="$ip_flag $ip"
+    fi
+    if [[ $domain_url != "-1" ]]; then
+        domain_url_rule="$domain_url_flag \"$domain_url\""
+    fi
+    if [[ $port = "-1" ]]; then
+        log_and_evaluate "iptables -A $traffic_type $ip_rule $domain_url_rule -j DROP"
+    else
+        port_rule="$port_flag $port"
+        log_and_evaluate "iptables -A $traffic_type -p tcp $ip_rule $port_rule $domain_url_rule -j DROP"
+        log_and_evaluate "iptables -A $traffic_type -p udp $ip_rule $port_rule $domain_url_rule -j DROP"
+    fi
 }
 
 #######################################
@@ -163,6 +203,15 @@ block_port_scan_and_port_knocking() {
 }
 
 #######################################
+# Show all rules.
+#######################################
+show_all_rules() {
+    iptables -S
+    echo "----------------------------"
+    iptables -L -v -n
+}
+
+#######################################
 # Flush all rules.
 #######################################
 flush_all_rules() {
@@ -171,33 +220,7 @@ flush_all_rules() {
     iptables -P INPUT ACCEPT
     iptables -P OUTPUT ACCEPT
     iptables -P FORWARD ACCEPT
-}
-
-#######################################
-# Block incoming traffic from IP
-#######################################
-block_traffic_from_ip() {
-    echo -n "Enter the IP address to block: "
-    read -r ip
-    sudo iptables -A INPUT -s $ip -j DROP
-}
-
-#######################################
-# Block outgoing traffic to IP
-#######################################
-block_traffic_to_ip() {
-    echo -n "Enter the IP address to block: "
-    read -r ip
-    sudo iptables -A OUTPUT -s $ip -j DROP
-}
-
-#######################################
-# Block incoming traffic from domain RegEx URL
-#######################################
-block_traffic_from_domain() {
-    echo -n "Enter the domain RegEx URL to block: "
-    read -r domain
-    iptables -A INPUT -s $domain -j DROP
+    echo "Flush complete."
 }
 
 #######################################
@@ -232,9 +255,9 @@ main_menu() {
 main() {
     while true; do
         main_menu
-        sleep_time=3
-        echo "Showing main menu in $sleep_time seconds..."
-        sleep $sleep_time
+        echo
+        echo -n "Press enter to start over..."
+        read -r
     done
 }
 
