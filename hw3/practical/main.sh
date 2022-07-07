@@ -52,6 +52,16 @@ block_traffic_count_protocol_request_type_menu_functions=(
     block_traffic_count_protocol_request_type_smtp
 )
 
+block_port_scan_and_port_knocking_menu_items=(
+    "Block port scan"
+    "Set port knocking"
+)
+
+block_port_scan_and_port_knocking_menu_functions=(
+    block_port_scan
+    set_port_knocking
+)
+
 
 #######################################
 # Echo menu with menu_items and get user input.
@@ -61,6 +71,7 @@ block_traffic_count_protocol_request_type_menu_functions=(
 #   User input, an integer.
 #######################################
 echo_menu() {
+    clear
     local menu_items=("$@")
     echo "0. Exit"
     for ((i = 0; i < ${#menu_items[@]}; i++)); do
@@ -169,7 +180,7 @@ block_traffic_count_protocol_request_type() {
 # Block traffic if header contains a specific string.
 #######################################
 block_traffic_header_string() {
-    clear 
+    clear
     echo -n "Enter header key: "
     read -r header
     echo -n "Enter header content: "
@@ -198,6 +209,8 @@ use_db_improve_dos_attack_prevention() {
 #######################################
 block_port_scan_and_port_knocking() {
     clear
+    echo_menu "${block_port_scan_and_port_knocking_menu_items[@]}"
+    ${block_port_scan_and_port_knocking_menu_functions[ $(( $? - 1 )) ]}
 }
 
 #######################################
@@ -286,10 +299,22 @@ block_traffic_count_protocol_request_type_smtp() {
 }
 
 #######################################
+# Block port scan.
+#######################################
+block_port_scan() {
+    echo -n "Enter the ports you are concerned with (separated by space): "
+    read -r ports
+    local ports_array=($ports)
+    for port in "${ports_array[@]}"; do
+        log_and_evaluate "iptables -A INPUT -p tcp --dport $port -m recent --set"
+        log_and_evaluate "iptables -A INPUT -p tcp --dport $port -m recent --update --seconds 60 --hitcount 3 -j DROP"
+    done
+}
+
+#######################################
 # Show main menu.
 #######################################
 main_menu() {
-    clear
     echo_menu "${main_menu_items[@]}"
     ${main_menu_functions[ $(( $? - 1 )) ]}
 }
