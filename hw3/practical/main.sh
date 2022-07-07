@@ -8,8 +8,6 @@
 
 traffic_types=(INPUT OUTPUT)
 
-debug_mode=true
-
 main_menu_items=(
     "Block incoming/outgoing traffic to a specific IP, domain RegEx URL, or port."
     "Block incoming/outgoing traffic base on count, protocol, and request type."
@@ -309,6 +307,29 @@ block_port_scan() {
         log_and_evaluate "iptables -A INPUT -p tcp --dport $port -m recent --set"
         log_and_evaluate "iptables -A INPUT -p tcp --dport $port -m recent --update --seconds 60 --hitcount 3 -j DROP"
     done
+}
+
+#######################################
+# Setup port knocking.
+#######################################
+set_port_knocking() {
+    echo -n "Enter first port to knock: "
+    read -r port1
+    echo -n "Enter second port to knock: "
+    read -r port2
+    echo -n "Enter third port to knock: "
+    read -r port3
+    echo -n "Enter target port: "
+    read -r target_port
+    echo -n "Enter chain name: "
+    read -r chain_name
+    log_and_evaluate "iptables -N $chain_name"
+    log_and_evaluate "iptables -A INPUT -j $chain_name"
+    log_and_evaluate "iptables -A $chain_name -p tcp --dport $target_port -m recent --rcheck --seconds 60 --reap --name knockfinal -j ACCEPT"
+    log_and_evaluate "iptables -A $chain_name -p tcp -m tcp --dport $port1 -m recent --set --name knock1 -j REJECT"
+    log_and_evaluate "iptables -A $chain_name -p tcp -m recent --rcheck --seconds 10 --reap --name knock1 -m tcp --dport $port2 -m recent --set --name knock2 -j REJECT"
+    log_and_evaluate "iptables -A $chain_name -p tcp -m recent --rcheck --seconds 10 --reap --name knock2 -m tcp --dport $port3 -m recent --set --name knockfinal -j REJECT"
+    log_and_evaluate "iptables -A INPUT -p tcp --dport $target_port -m state --state NEW,INVALID -j REJECT"
 }
 
 #######################################
