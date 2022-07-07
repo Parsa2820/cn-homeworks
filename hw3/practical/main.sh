@@ -70,7 +70,7 @@ echo_menu() {
     read -r choice
     echo
     if [[ $choice -eq 0 ]]; then
-        echo "Exiting..."
+        clear
         exit 0
     fi
     if [[ $choice -lt 0 || $choice -gt ${#menu_items[@]} ]]; then
@@ -247,6 +247,15 @@ block_traffic_count_protocol_request_type_dns() {
     echo -n "Enter the domain to block: "
     read -r domain
     log_and_evaluate "iptables -A OUTPUT -p udp --dport 53 -m string --algo bm --string $domain -j DROP"
+}
+
+#######################################
+# Block specific MAC address in incoming traffic
+#######################################
+block_traffic_count_protocol_request_type_dhcp() {
+    echo -n "Enter the MAC address to block: "
+    read -r mac
+    log_and_evaluate "iptables -A INPUT -p udp --sport 68 --dport 67 -m mac --mac-source $mac -j DROP"
 }
 
 #######################################
