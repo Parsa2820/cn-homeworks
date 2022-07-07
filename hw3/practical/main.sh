@@ -170,6 +170,13 @@ block_traffic_count_protocol_request_type() {
 #######################################
 block_traffic_header_string() {
     clear 
+    echo -n "Enter header key: "
+    read -r header
+    echo -n "Enter header content: "
+    read -r header_content
+    local rule="$header: $header_content"
+    log_and_evaluate "iptables -A INPUT -m string --algo bm --string \"$rule\" -j DROP"
+    log_and_evaluate "iptables -A OUTPUT -m string --algo bm --string \"$rule\" -j DROP"
 }
 
 #######################################
