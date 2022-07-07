@@ -225,9 +225,9 @@ hi() {
 # Block specfic file in FTP protocol
 #######################################
 block_traffic_count_protocol_request_type_ftp() {
-    echo -n "Enter the file to block: "
+    echo -n "Enter the file name to block: "
     read -r file
-    iptables -A INPUT -p tcp --dport 21 -m string --string $file --algo bm -j DROP
+    log_and_evaluate "iptables -A INPUT -p tcp --dport 21 -m string --algo bm --string \"$file\" -j DROP"
 }
 
 #######################################
@@ -246,7 +246,8 @@ block_traffic_count_protocol_request_type_ssh() {
 block_traffic_count_protocol_request_type_dns() {
     echo -n "Enter the domain to block: "
     read -r domain
-    log_and_evaluate "iptables -A OUTPUT -p udp --dport 53 -m string --algo bm --string $domain -j DROP"
+    log_and_evaluate "iptables -A OUTPUT -p udp --dport 53 -m string --algo bm --string \"$domain\" -j DROP"
+    log_and_evaluate "systemd-resolve --flush-caches"
 }
 
 #######################################
@@ -256,6 +257,25 @@ block_traffic_count_protocol_request_type_dhcp() {
     echo -n "Enter the MAC address to block: "
     read -r mac
     log_and_evaluate "iptables -A INPUT -p udp --sport 68 --dport 67 -m mac --mac-source $mac -j DROP"
+}
+
+#######################################
+# Block HTTP/HTTPS requests with specific content
+#######################################
+block_traffic_count_protocol_request_type_http_https() {
+    echo -n "Enter the content to block: "
+    read -r content
+    log_and_evaluate "iptables -A INPUT -p tcp --dport 80 -m string --algo bm --string \"$content\" -j DROP"
+    log_and_evaluate "iptables -A INPUT -p tcp --dport 443 -m string --algo bm --string \"$content\" -j DROP"
+}
+
+#######################################
+# Block specific email address in SMTP protocol
+#######################################
+block_traffic_count_protocol_request_type_smtp() {
+    echo -n "Enter the email address to block: "
+    read -r email
+    log_and_evaluate "iptables -A INPUT -p tcp --dport 25 -m string --algo bm --string \"$email\" -j DROP"
 }
 
 #######################################
