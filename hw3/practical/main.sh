@@ -189,10 +189,17 @@ block_traffic_header_string() {
 }
 
 #######################################
-# Config DoS attack prevention.
+# Config DoS attack protection.
 #######################################
 config_dos_attack_prevention() {
     clear
+    # /sbin/iptables --insert INPUT --proto tcp --dport 1345 --match state --state NEW --match recent --update --seconds $TIME --hitcount $HITS --jump DROP
+    echo -n "Enter time in which queries should be count(seconds): "
+    read -r time
+    echo -n "Enter hit count: "
+    read -r hits
+    log_and_evaluate "iptables -A INPUT --match state --state NEW --match recent --update --seconds $time --hitcount $hits --jump DROP" 
+
 }
 
 #######################################
