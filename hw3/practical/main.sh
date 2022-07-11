@@ -6,6 +6,11 @@
 # Run this script with sufficient privileges.
 
 
+ddos_log_prefix="[DDoS Log] "
+ddos_db_file="/var/lib/ddos.db"
+ddos_db_table="trusted_hosts"
+ddos_db_schema="ddos.sql"
+
 traffic_types=(INPUT OUTPUT)
 
 main_menu_items=(
@@ -48,6 +53,18 @@ block_traffic_count_protocol_request_type_menu_functions=(
     block_traffic_count_protocol_request_type_dhcp
     block_traffic_count_protocol_request_type_http_https
     block_traffic_count_protocol_request_type_smtp
+)
+
+use_db_improve_dos_attack_prevention_menu_items=(
+    "Configure input traffic log"
+    "Extract log to DB"
+    "Configure trusted users"
+)
+
+use_db_improve_dos_attack_prevention_menu_functions=(
+    config_input_traffic_log
+    extract_log_to_db
+    config_trusted_users
 )
 
 block_port_scan_and_port_knocking_menu_items=(
@@ -207,6 +224,8 @@ config_dos_attack_prevention() {
 #######################################
 use_db_improve_dos_attack_prevention() {
     clear
+    echo_menu "${use_db_improve_dos_attack_prevention_menu_items[@]}"
+    ${use_db_improve_dos_attack_prevention_menu_functions[ $(( $? - 1 )) ]}
 }
 
 #######################################
@@ -301,6 +320,58 @@ block_traffic_count_protocol_request_type_smtp() {
     echo -n "Enter the email address to block: "
     read -r email
     log_and_evaluate "iptables -A INPUT -p tcp --dport 25 -m string --algo bm --string \"$email\" -j DROP"
+}
+
+#######################################
+# Eneble logging of incoming traffic.
+#######################################
+config_input_traffic_log() {
+    log_and_evaluate "iptables -I INPUT -m state --state NEW -j LOG --log-prefix='$ddos_log_prefix'"
+}
+
+#######################################
+# Extract log to sqlite database.
+#######################################
+extract_log_to_db() {
+    clear
+    local f="$(mktemp)"
+    log_and_evaluate "rm -f $f"
+    log_and_evaluate "touch $f"
+    log_and_evaluate "cat /var/log/kern.log | grep -i \"$ddos_log_prefix\" > $f"
+    log_and_evaluate "rm -f $ddos_db_file"
+    log_and_evaluate "sqlite3 $ddos_db_file < $ddos_db_schema"
+    echo "Extracting log to sqlite database..."
+    lines=$(cat $f)
+    IFS=$'\n' 
+    for line in $lines
+    do
+        local ip="$(echo $line | grep -oE 'SRC=([0-9\.]+)' | grep -oE '[0-9\.]+')"
+        local mac="$(echo $line | grep -oE 'MAC=([0-9a-fA-F:]+)' | grep -oE '=[0-9a-fA-F:]+' | grep -oE '[0-9a-fA-F:]+')"
+        mac="${mac:18:17}"
+        if [[ -z $ip || -z $mac ]]; then
+            continue
+        fi
+        sqlite3 $ddos_db_file "INSERT OR IGNORE INTO $ddos_db_table VALUES ('$mac', '$ip')"
+    done
+    echo "Extract complete. Database file: $ddos_db_file"
+}
+
+#######################################
+# Add trusted users to DoS attack prevention system.
+#######################################
+config_trusted_users() {
+    clear
+    echo "Configuring trusted users..."
+    local users="$(sqlite3 $ddos_db_file "SELECT * FROM $ddos_db_table")"
+    IFS=$'\n'
+    for user in $users
+    do
+        local info=(${user//|/$IFS})
+        local mac="${info[0]}"
+        local ip="${info[1]}"
+        log_and_evaluate "iptables -A INPUT -m mac --mac-source \"$mac\" -j ACCEPT"
+    done
+    echo "Config complete."
 }
 
 #######################################

@@ -1,0 +1,668 @@
+Jul 10 03:41:49 raspberrypi kernel: [   31.711083] cam1-reg: disabling
+Jul 10 03:41:49 raspberrypi kernel: [   31.711116] cam-dummy-reg: disabling
+Jul 10 05:59:44 raspberrypi kernel: [    0.000000] Booting Linux on physical CPU 0x0000000000 [0x410fd083]
+Jul 10 05:59:44 raspberrypi kernel: [    0.000000] Linux version 5.15.32-v8+ (dom@buildbot) (aarch64-linux-gnu-gcc-8 (Ubuntu/Linaro 8.4.0-3ubuntu1) 8.4.0, GNU ld (GNU Binutils for Ubuntu) 2.34) #1538 SMP PREEMPT Thu Mar 31 19:40:39 BST 2022
+Jul 10 05:59:44 raspberrypi kernel: [    0.000000] random: fast init done
+Jul 10 05:59:44 raspberrypi kernel: [    0.000000] Machine model: Raspberry Pi 400 Rev 1.0
+Jul 10 05:59:44 raspberrypi kernel: [    0.000000] efi: UEFI not found.
+Jul 10 05:59:44 raspberrypi kernel: [    0.000000] Reserved memory: created CMA memory pool at 0x000000001ac00000, size 320 MiB
+Jul 10 05:59:44 raspberrypi kernel: [    0.000000] OF: reserved mem: initialized node linux,cma, compatible id shared-dma-pool
+Jul 10 05:59:44 raspberrypi kernel: [    0.000000] Zone ranges:
+Jul 10 05:59:44 raspberrypi kernel: [    0.000000]   DMA      [mem 0x0000000000000000-0x000000003fffffff]
+Jul 10 05:59:44 raspberrypi kernel: [    0.000000]   DMA32    [mem 0x0000000040000000-0x00000000fbffffff]
+Jul 10 05:59:44 raspberrypi kernel: [    0.000000]   Normal   empty
+Jul 10 05:59:44 raspberrypi kernel: [    0.000000] Movable zone start for each node
+Jul 10 05:59:44 raspberrypi kernel: [    0.000000] Early memory node ranges
+Jul 10 05:59:44 raspberrypi kernel: [    0.000000]   node   0: [mem 0x0000000000000000-0x000000003b3fffff]
+Jul 10 05:59:44 raspberrypi kernel: [    0.000000]   node   0: [mem 0x0000000040000000-0x00000000fbffffff]
+Jul 10 05:59:44 raspberrypi kernel: [    0.000000] Initmem setup node 0 [mem 0x0000000000000000-0x00000000fbffffff]
+Jul 10 05:59:44 raspberrypi kernel: [    0.000000] percpu: Embedded 28 pages/cpu s77144 r8192 d29352 u114688
+Jul 10 05:59:44 raspberrypi kernel: [    0.000000] pcpu-alloc: s77144 r8192 d29352 u114688 alloc=28*4096
+Jul 10 05:59:44 raspberrypi kernel: [    0.000000] pcpu-alloc: [0] 0 [0] 1 [0] 2 [0] 3 
+Jul 10 05:59:44 raspberrypi kernel: [    0.000000] Detected PIPT I-cache on CPU0
+Jul 10 05:59:44 raspberrypi kernel: [    0.000000] CPU features: detected: Spectre-v2
+Jul 10 05:59:44 raspberrypi kernel: [    0.000000] CPU features: detected: Spectre-v4
+Jul 10 05:59:44 raspberrypi kernel: [    0.000000] CPU features: detected: Spectre-BHB
+Jul 10 05:59:44 raspberrypi kernel: [    0.000000] CPU features: detected: ARM errata 1165522, 1319367, or 1530923
+Jul 10 05:59:44 raspberrypi kernel: [    0.000000] Built 1 zonelists, mobility grouping on.  Total pages: 996912
+Jul 10 05:59:44 raspberrypi kernel: [    0.000000] Kernel command line: coherent_pool=1M 8250.nr_uarts=0 snd_bcm2835.enable_compat_alsa=0 snd_bcm2835.enable_hdmi=1  smsc95xx.macaddr=E4:5F:01:2D:AD:12 vc_mem.mem_base=0x3ec00000 vc_mem.mem_size=0x40000000  console=ttyS0,115200 console=tty1 root=PARTUUID=a62480d5-02 rootfstype=ext4 fsck.repair=yes rootwait quiet splash plymouth.ignore-serial-consoles
+Jul 10 05:59:44 raspberrypi kernel: [    0.000000] Unknown kernel command line parameters "splash", will be passed to user space.
+Jul 10 05:59:44 raspberrypi kernel: [    0.000000] Dentry cache hash table entries: 524288 (order: 10, 4194304 bytes, linear)
+Jul 10 05:59:44 raspberrypi kernel: [    0.000000] Inode-cache hash table entries: 262144 (order: 9, 2097152 bytes, linear)
+Jul 10 05:59:44 raspberrypi kernel: [    0.000000] mem auto-init: stack:off, heap alloc:off, heap free:off
+Jul 10 05:59:44 raspberrypi kernel: [    0.000000] software IO TLB: mapped [mem 0x0000000037400000-0x000000003b400000] (64MB)
+Jul 10 05:59:44 raspberrypi kernel: [    0.000000] Memory: 3554100K/4050944K available (11456K kernel code, 1962K rwdata, 4144K rodata, 3776K init, 964K bss, 169164K reserved, 327680K cma-reserved)
+Jul 10 05:59:44 raspberrypi kernel: [    0.000000] SLUB: HWalign=64, Order=0-3, MinObjects=0, CPUs=4, Nodes=1
+Jul 10 05:59:44 raspberrypi kernel: [    0.000000] ftrace: allocating 37889 entries in 149 pages
+Jul 10 05:59:44 raspberrypi kernel: [    0.000000] ftrace: allocated 149 pages with 4 groups
+Jul 10 05:59:44 raspberrypi kernel: [    0.000000] trace event string verifier disabled
+Jul 10 05:59:44 raspberrypi kernel: [    0.000000] rcu: Preemptible hierarchical RCU implementation.
+Jul 10 05:59:44 raspberrypi kernel: [    0.000000] rcu: 	RCU event tracing is enabled.
+Jul 10 05:59:44 raspberrypi kernel: [    0.000000] rcu: 	RCU restricting CPUs from NR_CPUS=256 to nr_cpu_ids=4.
+Jul 10 05:59:44 raspberrypi kernel: [    0.000000] 	Trampoline variant of Tasks RCU enabled.
+Jul 10 05:59:44 raspberrypi kernel: [    0.000000] 	Rude variant of Tasks RCU enabled.
+Jul 10 05:59:44 raspberrypi kernel: [    0.000000] 	Tracing variant of Tasks RCU enabled.
+Jul 10 05:59:44 raspberrypi kernel: [    0.000000] rcu: RCU calculated value of scheduler-enlistment delay is 25 jiffies.
+Jul 10 05:59:44 raspberrypi kernel: [    0.000000] rcu: Adjusting geometry for rcu_fanout_leaf=16, nr_cpu_ids=4
+Jul 10 05:59:44 raspberrypi kernel: [    0.000000] NR_IRQS: 64, nr_irqs: 64, preallocated irqs: 0
+Jul 10 05:59:44 raspberrypi kernel: [    0.000000] Root IRQ handler: gic_handle_irq
+Jul 10 05:59:44 raspberrypi kernel: [    0.000000] GIC: Using split EOI/Deactivate mode
+Jul 10 05:59:44 raspberrypi kernel: [    0.000000] irq_brcmstb_l2: registered L2 intc (/soc/interrupt-controller@7ef00100, parent irq: 10)
+Jul 10 05:59:44 raspberrypi kernel: [    0.000000] random: get_random_bytes called from start_kernel+0x510/0x6f8 with crng_init=1
+Jul 10 05:59:44 raspberrypi kernel: [    0.000000] arch_timer: cp15 timer(s) running at 54.00MHz (phys).
+Jul 10 05:59:44 raspberrypi kernel: [    0.000000] clocksource: arch_sys_counter: mask: 0xffffffffffffff max_cycles: 0xc743ce346, max_idle_ns: 440795203123 ns
+Jul 10 05:59:44 raspberrypi kernel: [    0.000001] sched_clock: 56 bits at 54MHz, resolution 18ns, wraps every 4398046511102ns
+Jul 10 05:59:44 raspberrypi kernel: [    0.000250] Console: colour dummy device 80x25
+Jul 10 05:59:44 raspberrypi kernel: [    0.000305] printk: console [tty1] enabled
+Jul 10 05:59:44 raspberrypi kernel: [    0.000368] Calibrating delay loop (skipped), value calculated using timer frequency.. 108.00 BogoMIPS (lpj=216000)
+Jul 10 05:59:44 raspberrypi kernel: [    0.000394] pid_max: default: 32768 minimum: 301
+Jul 10 05:59:44 raspberrypi kernel: [    0.000534] LSM: Security Framework initializing
+Jul 10 05:59:44 raspberrypi kernel: [    0.000712] Mount-cache hash table entries: 8192 (order: 4, 65536 bytes, linear)
+Jul 10 05:59:44 raspberrypi kernel: [    0.000783] Mountpoint-cache hash table entries: 8192 (order: 4, 65536 bytes, linear)
+Jul 10 05:59:44 raspberrypi kernel: [    0.002034] cgroup: Disabling memory control group subsystem
+Jul 10 05:59:44 raspberrypi kernel: [    0.004530] rcu: Hierarchical SRCU implementation.
+Jul 10 05:59:44 raspberrypi kernel: [    0.005622] EFI services will not be available.
+Jul 10 05:59:44 raspberrypi kernel: [    0.006162] smp: Bringing up secondary CPUs ...
+Jul 10 05:59:44 raspberrypi kernel: [    0.007209] Detected PIPT I-cache on CPU1
+Jul 10 05:59:44 raspberrypi kernel: [    0.007291] CPU1: Booted secondary processor 0x0000000001 [0x410fd083]
+Jul 10 05:59:44 raspberrypi kernel: [    0.008519] Detected PIPT I-cache on CPU2
+Jul 10 05:59:44 raspberrypi kernel: [    0.008569] CPU2: Booted secondary processor 0x0000000002 [0x410fd083]
+Jul 10 05:59:44 raspberrypi kernel: [    0.009695] Detected PIPT I-cache on CPU3
+Jul 10 05:59:44 raspberrypi kernel: [    0.009744] CPU3: Booted secondary processor 0x0000000003 [0x410fd083]
+Jul 10 05:59:44 raspberrypi kernel: [    0.009893] smp: Brought up 1 node, 4 CPUs
+Jul 10 05:59:44 raspberrypi kernel: [    0.009914] SMP: Total of 4 processors activated.
+Jul 10 05:59:44 raspberrypi kernel: [    0.009926] CPU features: detected: 32-bit EL0 Support
+Jul 10 05:59:44 raspberrypi kernel: [    0.009936] CPU features: detected: 32-bit EL1 Support
+Jul 10 05:59:44 raspberrypi kernel: [    0.009948] CPU features: detected: CRC32 instructions
+Jul 10 05:59:44 raspberrypi kernel: [    0.041153] CPU: All CPU(s) started at EL2
+Jul 10 05:59:44 raspberrypi kernel: [    0.041225] alternatives: patching kernel code
+Jul 10 05:59:44 raspberrypi kernel: [    0.042927] devtmpfs: initialized
+Jul 10 05:59:44 raspberrypi kernel: [    0.053920] Enabled cp15_barrier support
+Jul 10 05:59:44 raspberrypi kernel: [    0.053963] Enabled setend support
+Jul 10 05:59:44 raspberrypi kernel: [    0.054146] clocksource: jiffies: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 7645041785100000 ns
+Jul 10 05:59:44 raspberrypi kernel: [    0.054178] futex hash table entries: 1024 (order: 4, 65536 bytes, linear)
+Jul 10 05:59:44 raspberrypi kernel: [    0.065057] pinctrl core: initialized pinctrl subsystem
+Jul 10 05:59:44 raspberrypi kernel: [    0.065856] DMI not present or invalid.
+Jul 10 05:59:44 raspberrypi kernel: [    0.066336] NET: Registered PF_NETLINK/PF_ROUTE protocol family
+Jul 10 05:59:44 raspberrypi kernel: [    0.069987] DMA: preallocated 1024 KiB GFP_KERNEL pool for atomic allocations
+Jul 10 05:59:44 raspberrypi kernel: [    0.070288] DMA: preallocated 1024 KiB GFP_KERNEL|GFP_DMA pool for atomic allocations
+Jul 10 05:59:44 raspberrypi kernel: [    0.071189] DMA: preallocated 1024 KiB GFP_KERNEL|GFP_DMA32 pool for atomic allocations
+Jul 10 05:59:44 raspberrypi kernel: [    0.071285] audit: initializing netlink subsys (disabled)
+Jul 10 05:59:44 raspberrypi kernel: [    0.071577] audit: type=2000 audit(0.068:1): state=initialized audit_enabled=0 res=1
+Jul 10 05:59:44 raspberrypi kernel: [    0.072092] thermal_sys: Registered thermal governor 'step_wise'
+Jul 10 05:59:44 raspberrypi kernel: [    0.072336] cpuidle: using governor menu
+Jul 10 05:59:44 raspberrypi kernel: [    0.072674] hw-breakpoint: found 6 breakpoint and 4 watchpoint registers.
+Jul 10 05:59:44 raspberrypi kernel: [    0.072860] ASID allocator initialised with 65536 entries
+Jul 10 05:59:44 raspberrypi kernel: [    0.073016] Serial: AMBA PL011 UART driver
+Jul 10 05:59:44 raspberrypi kernel: [    0.085384] bcm2835-mbox fe00b880.mailbox: mailbox enabled
+Jul 10 05:59:44 raspberrypi kernel: [    0.112363] raspberrypi-firmware soc:firmware: Attached to firmware from 2022-03-24T13:19:26, variant start
+Jul 10 05:59:44 raspberrypi kernel: [    0.116372] raspberrypi-firmware soc:firmware: Firmware hash is e5a963efa66a1974127860b42e913d2374139ff5
+Jul 10 05:59:44 raspberrypi kernel: [    0.167108] bcm2835-dma fe007000.dma: DMA legacy API manager, dmachans=0x1
+Jul 10 05:59:44 raspberrypi kernel: [    0.171870] vgaarb: loaded
+Jul 10 05:59:44 raspberrypi kernel: [    0.172276] SCSI subsystem initialized
+Jul 10 05:59:44 raspberrypi kernel: [    0.172513] usbcore: registered new interface driver usbfs
+Jul 10 05:59:44 raspberrypi kernel: [    0.172625] usbcore: registered new interface driver hub
+Jul 10 05:59:44 raspberrypi kernel: [    0.172690] usbcore: registered new device driver usb
+Jul 10 05:59:44 raspberrypi kernel: [    0.173048] usb_phy_generic phy: supply vcc not found, using dummy regulator
+Jul 10 05:59:44 raspberrypi kernel: [    0.173500] pps_core: LinuxPPS API ver. 1 registered
+Jul 10 05:59:44 raspberrypi kernel: [    0.173513] pps_core: Software ver. 5.3.6 - Copyright 2005-2007 Rodolfo Giometti <giometti@linux.it>
+Jul 10 05:59:44 raspberrypi kernel: [    0.173544] PTP clock support registered
+Jul 10 05:59:44 raspberrypi kernel: [    0.175022] clocksource: Switched to clocksource arch_sys_counter
+Jul 10 05:59:44 raspberrypi kernel: [    0.263591] VFS: Disk quotas dquot_6.6.0
+Jul 10 05:59:44 raspberrypi kernel: [    0.263699] VFS: Dquot-cache hash table entries: 512 (order 0, 4096 bytes)
+Jul 10 05:59:44 raspberrypi kernel: [    0.263865] FS-Cache: Loaded
+Jul 10 05:59:44 raspberrypi kernel: [    0.264106] CacheFiles: Loaded
+Jul 10 05:59:44 raspberrypi kernel: [    0.274971] NET: Registered PF_INET protocol family
+Jul 10 05:59:44 raspberrypi kernel: [    0.275561] IP idents hash table entries: 65536 (order: 7, 524288 bytes, linear)
+Jul 10 05:59:44 raspberrypi kernel: [    0.278990] tcp_listen_portaddr_hash hash table entries: 2048 (order: 3, 32768 bytes, linear)
+Jul 10 05:59:44 raspberrypi kernel: [    0.279097] TCP established hash table entries: 32768 (order: 6, 262144 bytes, linear)
+Jul 10 05:59:44 raspberrypi kernel: [    0.279345] TCP bind hash table entries: 32768 (order: 7, 524288 bytes, linear)
+Jul 10 05:59:44 raspberrypi kernel: [    0.279853] TCP: Hash tables configured (established 32768 bind 32768)
+Jul 10 05:59:44 raspberrypi kernel: [    0.280114] UDP hash table entries: 2048 (order: 4, 65536 bytes, linear)
+Jul 10 05:59:44 raspberrypi kernel: [    0.280197] UDP-Lite hash table entries: 2048 (order: 4, 65536 bytes, linear)
+Jul 10 05:59:44 raspberrypi kernel: [    0.280499] NET: Registered PF_UNIX/PF_LOCAL protocol family
+Jul 10 05:59:44 raspberrypi kernel: [    0.281489] RPC: Registered named UNIX socket transport module.
+Jul 10 05:59:44 raspberrypi kernel: [    0.281507] RPC: Registered udp transport module.
+Jul 10 05:59:44 raspberrypi kernel: [    0.281518] RPC: Registered tcp transport module.
+Jul 10 05:59:44 raspberrypi kernel: [    0.281528] RPC: Registered tcp NFSv4.1 backchannel transport module.
+Jul 10 05:59:44 raspberrypi kernel: [    0.281548] PCI: CLS 0 bytes, default 64
+Jul 10 05:59:44 raspberrypi kernel: [    0.283888] hw perfevents: enabled with armv8_cortex_a72 PMU driver, 7 counters available
+Jul 10 05:59:44 raspberrypi kernel: [    0.284247] kvm [1]: IPA Size Limit: 44 bits
+Jul 10 05:59:44 raspberrypi kernel: [    0.285413] kvm [1]: vgic interrupt IRQ9
+Jul 10 05:59:44 raspberrypi kernel: [    0.285679] kvm [1]: Hyp mode initialized successfully
+Jul 10 05:59:44 raspberrypi kernel: [    1.189252] Initialise system trusted keyrings
+Jul 10 05:59:44 raspberrypi kernel: [    1.189607] workingset: timestamp_bits=46 max_order=20 bucket_order=0
+Jul 10 05:59:44 raspberrypi kernel: [    1.196527] zbud: loaded
+Jul 10 05:59:44 raspberrypi kernel: [    1.198359] FS-Cache: Netfs 'nfs' registered for caching
+Jul 10 05:59:44 raspberrypi kernel: [    1.199078] NFS: Registering the id_resolver key type
+Jul 10 05:59:44 raspberrypi kernel: [    1.199116] Key type id_resolver registered
+Jul 10 05:59:44 raspberrypi kernel: [    1.199127] Key type id_legacy registered
+Jul 10 05:59:44 raspberrypi kernel: [    1.199228] nfs4filelayout_init: NFSv4 File Layout Driver Registering...
+Jul 10 05:59:44 raspberrypi kernel: [    1.199242] nfs4flexfilelayout_init: NFSv4 Flexfile Layout Driver Registering...
+Jul 10 05:59:44 raspberrypi kernel: [    1.200443] Key type asymmetric registered
+Jul 10 05:59:44 raspberrypi kernel: [    1.200458] Asymmetric key parser 'x509' registered
+Jul 10 05:59:44 raspberrypi kernel: [    1.200538] Block layer SCSI generic (bsg) driver version 0.4 loaded (major 247)
+Jul 10 05:59:44 raspberrypi kernel: [    1.200788] io scheduler mq-deadline registered
+Jul 10 05:59:44 raspberrypi kernel: [    1.200803] io scheduler kyber registered
+Jul 10 05:59:44 raspberrypi kernel: [    1.208889] brcm-pcie fd500000.pcie: host bridge /scb/pcie@7d500000 ranges:
+Jul 10 05:59:44 raspberrypi kernel: [    1.208932] brcm-pcie fd500000.pcie:   No bus range found for /scb/pcie@7d500000, using [bus 00-ff]
+Jul 10 05:59:44 raspberrypi kernel: [    1.209019] brcm-pcie fd500000.pcie:      MEM 0x0600000000..0x063fffffff -> 0x00c0000000
+Jul 10 05:59:44 raspberrypi kernel: [    1.209102] brcm-pcie fd500000.pcie:   IB MEM 0x0000000000..0x00ffffffff -> 0x0400000000
+Jul 10 05:59:44 raspberrypi kernel: [    1.273122] brcm-pcie fd500000.pcie: link up, 5.0 GT/s PCIe x1 (SSC)
+Jul 10 05:59:44 raspberrypi kernel: [    1.273483] brcm-pcie fd500000.pcie: PCI host bridge to bus 0000:00
+Jul 10 05:59:44 raspberrypi kernel: [    1.273502] pci_bus 0000:00: root bus resource [bus 00-ff]
+Jul 10 05:59:44 raspberrypi kernel: [    1.273520] pci_bus 0000:00: root bus resource [mem 0x600000000-0x63fffffff] (bus address [0xc0000000-0xffffffff])
+Jul 10 05:59:44 raspberrypi kernel: [    1.273607] pci 0000:00:00.0: [14e4:2711] type 01 class 0x060400
+Jul 10 05:59:44 raspberrypi kernel: [    1.273855] pci 0000:00:00.0: PME# supported from D0 D3hot
+Jul 10 05:59:44 raspberrypi kernel: [    1.277882] pci 0000:01:00.0: [1106:3483] type 00 class 0x0c0330
+Jul 10 05:59:44 raspberrypi kernel: [    1.278008] pci 0000:01:00.0: reg 0x10: [mem 0x00000000-0x00000fff 64bit]
+Jul 10 05:59:44 raspberrypi kernel: [    1.278435] pci 0000:01:00.0: PME# supported from D0 D3hot
+Jul 10 05:59:44 raspberrypi kernel: [    1.290390] pci 0000:00:00.0: BAR 8: assigned [mem 0x600000000-0x6000fffff]
+Jul 10 05:59:44 raspberrypi kernel: [    1.290418] pci 0000:01:00.0: BAR 0: assigned [mem 0x600000000-0x600000fff 64bit]
+Jul 10 05:59:44 raspberrypi kernel: [    1.290458] pci 0000:00:00.0: PCI bridge to [bus 01]
+Jul 10 05:59:44 raspberrypi kernel: [    1.290480] pci 0000:00:00.0:   bridge window [mem 0x600000000-0x6000fffff]
+Jul 10 05:59:44 raspberrypi kernel: [    1.299500] iproc-rng200 fe104000.rng: hwrng registered
+Jul 10 05:59:44 raspberrypi kernel: [    1.300073] vc-mem: phys_addr:0x00000000 mem_base=0x3ec00000 mem_size:0x40000000(1024 MiB)
+Jul 10 05:59:44 raspberrypi kernel: [    1.301568] gpiomem-bcm2835 fe200000.gpiomem: Initialised: Registers at 0xfe200000
+Jul 10 05:59:44 raspberrypi kernel: [    1.301980] cacheinfo: Unable to detect cache hierarchy for CPU 0
+Jul 10 05:59:44 raspberrypi kernel: [    1.313237] brd: module loaded
+Jul 10 05:59:44 raspberrypi kernel: [    1.322984] loop: module loaded
+Jul 10 05:59:44 raspberrypi kernel: [    1.323814] Loading iSCSI transport class v2.0-870.
+Jul 10 05:59:44 raspberrypi kernel: [    1.328879] bcmgenet fd580000.ethernet: GENET 5.0 EPHY: 0x0000
+Jul 10 05:59:44 raspberrypi kernel: [    1.387177] unimac-mdio unimac-mdio.-19: Broadcom UniMAC MDIO bus
+Jul 10 05:59:44 raspberrypi kernel: [    1.388332] usbcore: registered new interface driver r8152
+Jul 10 05:59:44 raspberrypi kernel: [    1.388398] usbcore: registered new interface driver lan78xx
+Jul 10 05:59:44 raspberrypi kernel: [    1.388463] usbcore: registered new interface driver smsc95xx
+Jul 10 05:59:44 raspberrypi kernel: [    1.435931] pci 0000:00:00.0: enabling device (0000 -> 0002)
+Jul 10 05:59:44 raspberrypi kernel: [    1.436109] xhci_hcd 0000:01:00.0: xHCI Host Controller
+Jul 10 05:59:44 raspberrypi kernel: [    1.436141] xhci_hcd 0000:01:00.0: new USB bus registered, assigned bus number 1
+Jul 10 05:59:44 raspberrypi kernel: [    1.436887] xhci_hcd 0000:01:00.0: hcc params 0x002841eb hci version 0x100 quirks 0x00003c0000000890
+Jul 10 05:59:44 raspberrypi kernel: [    1.438204] usb usb1: New USB device found, idVendor=1d6b, idProduct=0002, bcdDevice= 5.15
+Jul 10 05:59:44 raspberrypi kernel: [    1.438227] usb usb1: New USB device strings: Mfr=3, Product=2, SerialNumber=1
+Jul 10 05:59:44 raspberrypi kernel: [    1.438242] usb usb1: Product: xHCI Host Controller
+Jul 10 05:59:44 raspberrypi kernel: [    1.438256] usb usb1: Manufacturer: Linux 5.15.32-v8+ xhci-hcd
+Jul 10 05:59:44 raspberrypi kernel: [    1.438269] usb usb1: SerialNumber: 0000:01:00.0
+Jul 10 05:59:44 raspberrypi kernel: [    1.439073] hub 1-0:1.0: USB hub found
+Jul 10 05:59:44 raspberrypi kernel: [    1.439181] hub 1-0:1.0: 1 port detected
+Jul 10 05:59:44 raspberrypi kernel: [    1.439835] xhci_hcd 0000:01:00.0: xHCI Host Controller
+Jul 10 05:59:44 raspberrypi kernel: [    1.439858] xhci_hcd 0000:01:00.0: new USB bus registered, assigned bus number 2
+Jul 10 05:59:44 raspberrypi kernel: [    1.439882] xhci_hcd 0000:01:00.0: Host supports USB 3.0 SuperSpeed
+Jul 10 05:59:44 raspberrypi kernel: [    1.440334] usb usb2: New USB device found, idVendor=1d6b, idProduct=0003, bcdDevice= 5.15
+Jul 10 05:59:44 raspberrypi kernel: [    1.440354] usb usb2: New USB device strings: Mfr=3, Product=2, SerialNumber=1
+Jul 10 05:59:44 raspberrypi kernel: [    1.440369] usb usb2: Product: xHCI Host Controller
+Jul 10 05:59:44 raspberrypi kernel: [    1.440383] usb usb2: Manufacturer: Linux 5.15.32-v8+ xhci-hcd
+Jul 10 05:59:44 raspberrypi kernel: [    1.440396] usb usb2: SerialNumber: 0000:01:00.0
+Jul 10 05:59:44 raspberrypi kernel: [    1.441076] hub 2-0:1.0: USB hub found
+Jul 10 05:59:44 raspberrypi kernel: [    1.441144] hub 2-0:1.0: 4 ports detected
+Jul 10 05:59:44 raspberrypi kernel: [    1.442762] dwc_otg: version 3.00a 10-AUG-2012 (platform bus)
+Jul 10 05:59:44 raspberrypi kernel: [    1.443117] dwc_otg: FIQ enabled
+Jul 10 05:59:44 raspberrypi kernel: [    1.443129] dwc_otg: NAK holdoff enabled
+Jul 10 05:59:44 raspberrypi kernel: [    1.443139] dwc_otg: FIQ split-transaction FSM enabled
+Jul 10 05:59:44 raspberrypi kernel: [    1.443152] Module dwc_common_port init
+Jul 10 05:59:44 raspberrypi kernel: [    1.443720] usbcore: registered new interface driver uas
+Jul 10 05:59:44 raspberrypi kernel: [    1.443844] usbcore: registered new interface driver usb-storage
+Jul 10 05:59:44 raspberrypi kernel: [    1.444058] mousedev: PS/2 mouse device common for all mice
+Jul 10 05:59:44 raspberrypi kernel: [    1.451113] sdhci: Secure Digital Host Controller Interface driver
+Jul 10 05:59:44 raspberrypi kernel: [    1.451130] sdhci: Copyright(c) Pierre Ossman
+Jul 10 05:59:44 raspberrypi kernel: [    1.451771] sdhci-pltfm: SDHCI platform and OF driver helper
+Jul 10 05:59:44 raspberrypi kernel: [    1.455363] ledtrig-cpu: registered to indicate activity on CPUs
+Jul 10 05:59:44 raspberrypi kernel: [    1.456013] hid: raw HID events driver (C) Jiri Kosina
+Jul 10 05:59:44 raspberrypi kernel: [    1.456194] usbcore: registered new interface driver usbhid
+Jul 10 05:59:44 raspberrypi kernel: [    1.456207] usbhid: USB HID core driver
+Jul 10 05:59:44 raspberrypi kernel: [    1.456529] ashmem: initialized
+Jul 10 05:59:44 raspberrypi kernel: [    1.465381] Initializing XFRM netlink socket
+Jul 10 05:59:44 raspberrypi kernel: [    1.465431] NET: Registered PF_PACKET protocol family
+Jul 10 05:59:44 raspberrypi kernel: [    1.465555] Key type dns_resolver registered
+Jul 10 05:59:44 raspberrypi kernel: [    1.466732] registered taskstats version 1
+Jul 10 05:59:44 raspberrypi kernel: [    1.466765] Loading compiled-in X.509 certificates
+Jul 10 05:59:44 raspberrypi kernel: [    1.467510] Key type ._fscrypt registered
+Jul 10 05:59:44 raspberrypi kernel: [    1.467526] Key type .fscrypt registered
+Jul 10 05:59:44 raspberrypi kernel: [    1.467536] Key type fscrypt-provisioning registered
+Jul 10 05:59:44 raspberrypi kernel: [    1.479357] uart-pl011 fe201000.serial: there is not valid maps for state default
+Jul 10 05:59:44 raspberrypi kernel: [    1.479655] uart-pl011 fe201000.serial: cts_event_workaround enabled
+Jul 10 05:59:44 raspberrypi kernel: [    1.479815] fe201000.serial: ttyAMA0 at MMIO 0xfe201000 (irq = 19, base_baud = 0) is a PL011 rev2
+Jul 10 05:59:44 raspberrypi kernel: [    1.486909] bcm2835-wdt bcm2835-wdt: Poweroff handler already present!
+Jul 10 05:59:44 raspberrypi kernel: [    1.486929] bcm2835-wdt bcm2835-wdt: Broadcom BCM2835 watchdog timer
+Jul 10 05:59:44 raspberrypi kernel: [    1.487436] bcm2835-power bcm2835-power: Broadcom BCM2835 power domains driver
+Jul 10 05:59:44 raspberrypi kernel: [    1.488584] mmc-bcm2835 fe300000.mmcnr: mmc_debug:0 mmc_debug2:0
+Jul 10 05:59:44 raspberrypi kernel: [    1.488602] mmc-bcm2835 fe300000.mmcnr: DMA channel allocated
+Jul 10 05:59:44 raspberrypi kernel: [    1.519811] of_cfs_init
+Jul 10 05:59:44 raspberrypi kernel: [    1.520005] of_cfs_init: OK
+Jul 10 05:59:44 raspberrypi kernel: [    1.555862] mmc0: SDHCI controller on fe340000.mmc [fe340000.mmc] using ADMA
+Jul 10 05:59:44 raspberrypi kernel: [    1.556260] Waiting for root device PARTUUID=a62480d5-02...
+Jul 10 05:59:44 raspberrypi kernel: [    1.605152] mmc1: new high speed SDIO card at address 0001
+Jul 10 05:59:44 raspberrypi kernel: [    1.657144] mmc0: new ultra high speed DDR50 SDHC card at address e624
+Jul 10 05:59:44 raspberrypi kernel: [    1.658180] mmcblk0: mmc0:e624 SL32G 29.7 GiB 
+Jul 10 05:59:44 raspberrypi kernel: [    1.662790]  mmcblk0: p1 p2
+Jul 10 05:59:44 raspberrypi kernel: [    1.663346] mmcblk0: mmc0:e624 SL32G 29.7 GiB
+Jul 10 05:59:44 raspberrypi kernel: [    1.678307] EXT4-fs (mmcblk0p2): mounted filesystem with ordered data mode. Opts: (null). Quota mode: none.
+Jul 10 05:59:44 raspberrypi kernel: [    1.678406] VFS: Mounted root (ext4 filesystem) readonly on device 179:2.
+Jul 10 05:59:44 raspberrypi kernel: [    1.679211] devtmpfs: mounted
+Jul 10 05:59:44 raspberrypi kernel: [    1.687178] Freeing unused kernel memory: 3776K
+Jul 10 05:59:44 raspberrypi kernel: [    1.687403] Run /sbin/init as init process
+Jul 10 05:59:44 raspberrypi kernel: [    1.687414]   with arguments:
+Jul 10 05:59:44 raspberrypi kernel: [    1.687423]     /sbin/init
+Jul 10 05:59:44 raspberrypi kernel: [    1.687433]     splash
+Jul 10 05:59:44 raspberrypi kernel: [    1.687442]   with environment:
+Jul 10 05:59:44 raspberrypi kernel: [    1.687451]     HOME=/
+Jul 10 05:59:44 raspberrypi kernel: [    1.687461]     TERM=linux
+Jul 10 05:59:44 raspberrypi kernel: [    1.695070] usb 1-1: new high-speed USB device number 2 using xhci_hcd
+Jul 10 05:59:44 raspberrypi kernel: [    1.849678] usb 1-1: New USB device found, idVendor=2109, idProduct=3431, bcdDevice= 4.21
+Jul 10 05:59:44 raspberrypi kernel: [    1.849715] usb 1-1: New USB device strings: Mfr=0, Product=1, SerialNumber=0
+Jul 10 05:59:44 raspberrypi kernel: [    1.849731] usb 1-1: Product: USB2.0 Hub
+Jul 10 05:59:44 raspberrypi kernel: [    1.851778] hub 1-1:1.0: USB hub found
+Jul 10 05:59:44 raspberrypi kernel: [    1.852040] hub 1-1:1.0: 4 ports detected
+Jul 10 05:59:44 raspberrypi kernel: [    2.147103] usb 1-1.4: new low-speed USB device number 3 using xhci_hcd
+Jul 10 05:59:44 raspberrypi kernel: [    2.178152] NET: Registered PF_INET6 protocol family
+Jul 10 05:59:44 raspberrypi kernel: [    2.180065] Segment Routing with IPv6
+Jul 10 05:59:44 raspberrypi kernel: [    2.180108] In-situ OAM (IOAM) with IPv6
+Jul 10 05:59:44 raspberrypi kernel: [    2.308272] usb 1-1.4: New USB device found, idVendor=04d9, idProduct=0007, bcdDevice= 1.61
+Jul 10 05:59:44 raspberrypi kernel: [    2.308315] usb 1-1.4: New USB device strings: Mfr=1, Product=2, SerialNumber=0
+Jul 10 05:59:44 raspberrypi kernel: [    2.308332] usb 1-1.4: Product: Raspberry Pi Internal Keyboard
+Jul 10 05:59:44 raspberrypi kernel: [    2.308346] usb 1-1.4: Manufacturer:  
+Jul 10 05:59:44 raspberrypi kernel: [    2.339813] input:   Raspberry Pi Internal Keyboard as /devices/platform/scb/fd500000.pcie/pci0000:00/0000:00:00.0/0000:01:00.0/usb1/1-1/1-1.4/1-1.4:1.0/0003:04D9:0007.0001/input/input0
+Jul 10 05:59:44 raspberrypi kernel: [    2.400135] hid-generic 0003:04D9:0007.0001: input,hidraw0: USB HID v1.11 Keyboard [  Raspberry Pi Internal Keyboard] on usb-0000:01:00.0-1.4/input0
+Jul 10 05:59:44 raspberrypi kernel: [    2.422175] input:   Raspberry Pi Internal Keyboard as /devices/platform/scb/fd500000.pcie/pci0000:00/0000:00:00.0/0000:01:00.0/usb1/1-1/1-1.4/1-1.4:1.1/0003:04D9:0007.0002/input/input1
+Jul 10 05:59:44 raspberrypi kernel: [    2.479497] hid-generic 0003:04D9:0007.0002: input,hidraw1: USB HID v1.11 Device [  Raspberry Pi Internal Keyboard] on usb-0000:01:00.0-1.4/input1
+Jul 10 05:59:44 raspberrypi kernel: [    3.009370] random: systemd: uninitialized urandom read (16 bytes read)
+Jul 10 05:59:44 raspberrypi kernel: [    3.012276] random: systemd: uninitialized urandom read (16 bytes read)
+Jul 10 05:59:44 raspberrypi kernel: [    3.013410] random: systemd: uninitialized urandom read (16 bytes read)
+Jul 10 05:59:44 raspberrypi kernel: [    3.146812] fuse: init (API version 7.34)
+Jul 10 05:59:44 raspberrypi kernel: [    3.231459] i2c_dev: i2c /dev entries driver
+Jul 10 05:59:44 raspberrypi kernel: [    3.519605] EXT4-fs (mmcblk0p2): re-mounted. Opts: (null). Quota mode: none.
+Jul 10 05:59:44 raspberrypi kernel: [    4.535120] rpivid-mem feb00000.hevc-decoder: rpivid-hevcmem initialised: Registers at 0xfeb00000 length 0x00010000
+Jul 10 05:59:44 raspberrypi kernel: [    4.537508] rpivid-mem feb10000.rpivid-local-intc: rpivid-intcmem initialised: Registers at 0xfeb10000 length 0x00001000
+Jul 10 05:59:44 raspberrypi kernel: [    4.583529] rpivid-mem feb20000.h264-decoder: rpivid-h264mem initialised: Registers at 0xfeb20000 length 0x00010000
+Jul 10 05:59:44 raspberrypi kernel: [    4.604375] rpivid-mem feb30000.vp9-decoder: rpivid-vp9mem initialised: Registers at 0xfeb30000 length 0x00010000
+Jul 10 05:59:44 raspberrypi kernel: [    4.660131] mc: Linux media interface: v0.10
+Jul 10 05:59:44 raspberrypi kernel: [    4.711440] vc_sm_cma: module is from the staging directory, the quality is unknown, you have been warned.
+Jul 10 05:59:44 raspberrypi kernel: [    4.719896] bcm2835_vc_sm_cma_probe: Videocore shared memory driver
+Jul 10 05:59:44 raspberrypi kernel: [    4.719934] [vc_sm_connected_init]: start
+Jul 10 05:59:44 raspberrypi kernel: [    4.728259] [vc_sm_connected_init]: installed successfully
+Jul 10 05:59:44 raspberrypi kernel: [    4.853024] videodev: Linux video capture interface: v2.00
+Jul 10 05:59:44 raspberrypi kernel: [    4.903217] brcmstb-i2c fef04500.i2c:  @97500hz registered in polling mode
+Jul 10 05:59:44 raspberrypi kernel: [    4.930848] snd_bcm2835: module is from the staging directory, the quality is unknown, you have been warned.
+Jul 10 05:59:44 raspberrypi kernel: [    4.933785] brcmstb-i2c fef09500.i2c:  @97500hz registered in polling mode
+Jul 10 05:59:44 raspberrypi kernel: [    4.965344] bcm2835_audio bcm2835_audio: there is not valid maps for state default
+Jul 10 05:59:44 raspberrypi kernel: [    4.979769] bcm2835_mmal_vchiq: module is from the staging directory, the quality is unknown, you have been warned.
+Jul 10 05:59:44 raspberrypi kernel: [    4.984721] bcm2835_mmal_vchiq: module is from the staging directory, the quality is unknown, you have been warned.
+Jul 10 05:59:44 raspberrypi kernel: [    5.017417] bcm2835_isp: module is from the staging directory, the quality is unknown, you have been warned.
+Jul 10 05:59:44 raspberrypi kernel: [    5.068759] bcm2835-isp bcm2835-isp: Device node output[0] registered as /dev/video13
+Jul 10 05:59:44 raspberrypi kernel: [    5.070619] bcm2835-isp bcm2835-isp: Device node capture[0] registered as /dev/video14
+Jul 10 05:59:44 raspberrypi kernel: [    5.075542] bcm2835_v4l2: module is from the staging directory, the quality is unknown, you have been warned.
+Jul 10 05:59:44 raspberrypi kernel: [    5.085142] bcm2835-isp bcm2835-isp: Device node capture[1] registered as /dev/video15
+Jul 10 05:59:44 raspberrypi kernel: [    5.090101] bcm2835-isp bcm2835-isp: Device node stats[2] registered as /dev/video16
+Jul 10 05:59:44 raspberrypi kernel: [    5.090151] bcm2835-isp bcm2835-isp: Register output node 0 with media controller
+Jul 10 05:59:44 raspberrypi kernel: [    5.090174] bcm2835-isp bcm2835-isp: Register capture node 1 with media controller
+Jul 10 05:59:44 raspberrypi kernel: [    5.090193] bcm2835-isp bcm2835-isp: Register capture node 2 with media controller
+Jul 10 05:59:44 raspberrypi kernel: [    5.090210] bcm2835-isp bcm2835-isp: Register capture node 3 with media controller
+Jul 10 05:59:44 raspberrypi kernel: [    5.130961] bcm2835-isp bcm2835-isp: Device node output[0] registered as /dev/video20
+Jul 10 05:59:44 raspberrypi kernel: [    5.133041] bcm2835-isp bcm2835-isp: Device node capture[0] registered as /dev/video21
+Jul 10 05:59:44 raspberrypi kernel: [    5.153016] bcm2835-isp bcm2835-isp: Device node capture[1] registered as /dev/video22
+Jul 10 05:59:44 raspberrypi kernel: [    5.183121] [drm] Initialized v3d 1.0.0 20180419 for fec00000.v3d on minor 0
+Jul 10 05:59:44 raspberrypi kernel: [    5.207518] bcm2835-isp bcm2835-isp: Device node stats[2] registered as /dev/video23
+Jul 10 05:59:44 raspberrypi kernel: [    5.207573] bcm2835-isp bcm2835-isp: Register output node 0 with media controller
+Jul 10 05:59:44 raspberrypi kernel: [    5.207597] bcm2835-isp bcm2835-isp: Register capture node 1 with media controller
+Jul 10 05:59:44 raspberrypi kernel: [    5.207615] bcm2835-isp bcm2835-isp: Register capture node 2 with media controller
+Jul 10 05:59:44 raspberrypi kernel: [    5.207633] bcm2835-isp bcm2835-isp: Register capture node 3 with media controller
+Jul 10 05:59:44 raspberrypi kernel: [    5.216263] bcm2835-isp bcm2835-isp: Loaded V4L2 bcm2835-isp
+Jul 10 05:59:44 raspberrypi kernel: [    5.220361] bcm2835_codec: module is from the staging directory, the quality is unknown, you have been warned.
+Jul 10 05:59:44 raspberrypi kernel: [    5.359482] bcm2835-codec bcm2835-codec: Device registered as /dev/video10
+Jul 10 05:59:44 raspberrypi kernel: [    5.359548] bcm2835-codec bcm2835-codec: Loaded V4L2 decode
+Jul 10 05:59:44 raspberrypi kernel: [    5.371327] bcm2835-codec bcm2835-codec: Device registered as /dev/video11
+Jul 10 05:59:44 raspberrypi kernel: [    5.371393] bcm2835-codec bcm2835-codec: Loaded V4L2 encode
+Jul 10 05:59:44 raspberrypi kernel: [    5.386901] bcm2835-codec bcm2835-codec: Device registered as /dev/video12
+Jul 10 05:59:44 raspberrypi kernel: [    5.386962] bcm2835-codec bcm2835-codec: Loaded V4L2 isp
+Jul 10 05:59:44 raspberrypi kernel: [    5.396656] bcm2835-codec bcm2835-codec: Device registered as /dev/video18
+Jul 10 05:59:44 raspberrypi kernel: [    5.396725] bcm2835-codec bcm2835-codec: Loaded V4L2 image_fx
+Jul 10 05:59:44 raspberrypi kernel: [    5.427778] bcm2835-codec bcm2835-codec: Device registered as /dev/video31
+Jul 10 05:59:44 raspberrypi kernel: [    5.427837] bcm2835-codec bcm2835-codec: Loaded V4L2 encode_image
+Jul 10 05:59:44 raspberrypi kernel: [    5.447552] vc4-drm gpu: bound fe400000.hvs (ops vc4_hvs_ops [vc4])
+Jul 10 05:59:44 raspberrypi kernel: [    5.470273] Registered IR keymap rc-cec
+Jul 10 05:59:44 raspberrypi kernel: [    5.512314] cfg80211: Loading compiled-in X.509 certificates for regulatory database
+Jul 10 05:59:44 raspberrypi kernel: [    5.528794] rc rc0: vc4 as /devices/platform/soc/fef00700.hdmi/rc/rc0
+Jul 10 05:59:44 raspberrypi kernel: [    5.542910] cfg80211: Loaded X.509 cert 'sforshee: 00b28ddf47aef9cea7'
+Jul 10 05:59:44 raspberrypi kernel: [    5.554508] cfg80211: loaded regulatory.db is malformed or signature is missing/invalid
+Jul 10 05:59:44 raspberrypi kernel: [    5.693658] input: vc4 as /devices/platform/soc/fef00700.hdmi/rc/rc0/input2
+Jul 10 05:59:44 raspberrypi kernel: [    6.019790] brcmfmac: F1 signature read @0x18000000=0x15294345
+Jul 10 05:59:44 raspberrypi kernel: [    6.051638] brcmfmac: brcmf_fw_alloc_request: using brcm/brcmfmac43456-sdio for chip BCM4345/9
+Jul 10 05:59:44 raspberrypi kernel: [    6.052835] usbcore: registered new interface driver brcmfmac
+Jul 10 05:59:44 raspberrypi kernel: [    6.056975] brcmfmac mmc1:0001:1: Direct firmware load for brcm/brcmfmac43456-sdio.raspberrypi,400.bin failed with error -2
+Jul 10 05:59:44 raspberrypi kernel: [    6.131087] random: crng init done
+Jul 10 05:59:44 raspberrypi kernel: [    6.131117] random: 7 urandom warning(s) missed due to ratelimiting
+Jul 10 05:59:44 raspberrypi kernel: [    6.278793] brcmfmac: brcmf_fw_alloc_request: using brcm/brcmfmac43456-sdio for chip BCM4345/9
+Jul 10 05:59:44 raspberrypi kernel: [    6.280429] brcmfmac: brcmf_fw_alloc_request: using brcm/brcmfmac43456-sdio for chip BCM4345/9
+Jul 10 05:59:44 raspberrypi kernel: [    6.296683] brcmfmac: brcmf_c_preinit_dcmds: Firmware: BCM4345/9 wl0: May 14 2020 17:26:08 version 7.84.17.1 (r871554) FWID 01-3d9e1d87
+Jul 10 05:59:44 raspberrypi kernel: [    6.308534] vc4-drm gpu: bound fe400000.hvs (ops vc4_hvs_ops [vc4])
+Jul 10 05:59:44 raspberrypi kernel: [    6.312290] Registered IR keymap rc-cec
+Jul 10 05:59:44 raspberrypi kernel: [    6.323369] rc rc0: vc4 as /devices/platform/soc/fef00700.hdmi/rc/rc0
+Jul 10 05:59:44 raspberrypi kernel: [    6.323947] input: vc4 as /devices/platform/soc/fef00700.hdmi/rc/rc0/input3
+Jul 10 05:59:44 raspberrypi kernel: [    6.895473] vc4-drm gpu: bound fe400000.hvs (ops vc4_hvs_ops [vc4])
+Jul 10 05:59:44 raspberrypi kernel: [    6.897724] Registered IR keymap rc-cec
+Jul 10 05:59:44 raspberrypi kernel: [    6.919278] rc rc0: vc4 as /devices/platform/soc/fef00700.hdmi/rc/rc0
+Jul 10 05:59:44 raspberrypi kernel: [    6.958577] input: vc4 as /devices/platform/soc/fef00700.hdmi/rc/rc0/input4
+Jul 10 05:59:44 raspberrypi kernel: [    7.054316] vc4-drm gpu: bound fef00700.hdmi (ops vc4_hdmi_ops [vc4])
+Jul 10 05:59:44 raspberrypi kernel: [    7.061617] Registered IR keymap rc-cec
+Jul 10 05:59:44 raspberrypi kernel: [    7.069920] rc rc1: vc4 as /devices/platform/soc/fef05700.hdmi/rc/rc1
+Jul 10 05:59:44 raspberrypi kernel: [    7.084227] input: vc4 as /devices/platform/soc/fef05700.hdmi/rc/rc1/input5
+Jul 10 05:59:44 raspberrypi kernel: [    7.117730] vc4-drm gpu: bound fef05700.hdmi (ops vc4_hdmi_ops [vc4])
+Jul 10 05:59:44 raspberrypi kernel: [    7.118220] vc4-drm gpu: bound fe004000.txp (ops vc4_txp_ops [vc4])
+Jul 10 05:59:44 raspberrypi kernel: [    7.118613] vc4-drm gpu: bound fe206000.pixelvalve (ops vc4_crtc_ops [vc4])
+Jul 10 05:59:44 raspberrypi kernel: [    7.118983] vc4-drm gpu: bound fe207000.pixelvalve (ops vc4_crtc_ops [vc4])
+Jul 10 05:59:44 raspberrypi kernel: [    7.119427] vc4-drm gpu: bound fe20a000.pixelvalve (ops vc4_crtc_ops [vc4])
+Jul 10 05:59:44 raspberrypi kernel: [    7.119710] vc4-drm gpu: bound fe216000.pixelvalve (ops vc4_crtc_ops [vc4])
+Jul 10 05:59:44 raspberrypi kernel: [    7.120029] vc4-drm gpu: bound fec12000.pixelvalve (ops vc4_crtc_ops [vc4])
+Jul 10 05:59:44 raspberrypi kernel: [    7.148033] [drm] Initialized vc4 0.0.0 20140616 for gpu on minor 1
+Jul 10 05:59:44 raspberrypi kernel: [    7.148305] vc4-drm gpu: [drm] Cannot find any crtc or sizes
+Jul 10 05:59:44 raspberrypi kernel: [    7.747058] uart-pl011 fe201000.serial: no DMA platform data
+Jul 10 05:59:44 raspberrypi kernel: [    7.802285] 8021q: 802.1Q VLAN Support v1.8
+Jul 10 05:59:44 raspberrypi kernel: [    7.895227] Adding 102396k swap on /var/swap.  Priority:-2 extents:4 across:135164k SSFS
+Jul 10 05:59:45 raspberrypi kernel: [    8.470114] brcmfmac: brcmf_cfg80211_set_power_mgmt: power save enabled
+Jul 10 05:59:45 raspberrypi kernel: [    8.959784] bcmgenet fd580000.ethernet: configuring instance for external RGMII (RX delay)
+Jul 10 05:59:45 raspberrypi kernel: [    8.960689] bcmgenet fd580000.ethernet eth0: Link is Down
+Jul 10 05:59:50 raspberrypi kernel: [   13.683500] hdmi-audio-codec hdmi-audio-codec.2.auto: ASoC: error at snd_soc_dai_startup on i2s-hifi: -19
+Jul 10 05:59:50 raspberrypi kernel: [   13.683549]  MAI: soc_pcm_open() failed (-19)
+Jul 10 05:59:50 raspberrypi kernel: [   13.684037] hdmi-audio-codec hdmi-audio-codec.2.auto: ASoC: error at snd_soc_dai_startup on i2s-hifi: -19
+Jul 10 05:59:50 raspberrypi kernel: [   13.684068]  MAI: soc_pcm_open() failed (-19)
+Jul 10 05:59:50 raspberrypi kernel: [   13.684474] hdmi-audio-codec hdmi-audio-codec.2.auto: ASoC: error at snd_soc_dai_startup on i2s-hifi: -19
+Jul 10 05:59:50 raspberrypi kernel: [   13.684500]  MAI: soc_pcm_open() failed (-19)
+Jul 10 05:59:50 raspberrypi kernel: [   13.690000] hdmi-audio-codec hdmi-audio-codec.2.auto: ASoC: error at snd_soc_dai_startup on i2s-hifi: -19
+Jul 10 05:59:50 raspberrypi kernel: [   13.690060]  MAI: soc_pcm_open() failed (-19)
+Jul 10 05:59:50 raspberrypi kernel: [   13.690268] hdmi-audio-codec hdmi-audio-codec.2.auto: ASoC: error at snd_soc_dai_startup on i2s-hifi: -19
+Jul 10 05:59:50 raspberrypi kernel: [   13.690296]  MAI: soc_pcm_open() failed (-19)
+Jul 10 05:59:50 raspberrypi kernel: [   13.690497] hdmi-audio-codec hdmi-audio-codec.2.auto: ASoC: error at snd_soc_dai_startup on i2s-hifi: -19
+Jul 10 05:59:50 raspberrypi kernel: [   13.690522]  MAI: soc_pcm_open() failed (-19)
+Jul 10 05:59:50 raspberrypi kernel: [   13.901144] hdmi-audio-codec hdmi-audio-codec.3.auto: ASoC: error at snd_soc_dai_startup on i2s-hifi: -19
+Jul 10 05:59:50 raspberrypi kernel: [   13.901209]  MAI: soc_pcm_open() failed (-19)
+Jul 10 05:59:50 raspberrypi kernel: [   13.901883] hdmi-audio-codec hdmi-audio-codec.3.auto: ASoC: error at snd_soc_dai_startup on i2s-hifi: -19
+Jul 10 05:59:50 raspberrypi kernel: [   13.901931]  MAI: soc_pcm_open() failed (-19)
+Jul 10 05:59:50 raspberrypi kernel: [   13.902543] hdmi-audio-codec hdmi-audio-codec.3.auto: ASoC: error at snd_soc_dai_startup on i2s-hifi: -19
+Jul 10 05:59:50 raspberrypi kernel: [   13.902591]  MAI: soc_pcm_open() failed (-19)
+Jul 10 05:59:50 raspberrypi kernel: [   13.910631] hdmi-audio-codec hdmi-audio-codec.3.auto: ASoC: error at snd_soc_dai_startup on i2s-hifi: -19
+Jul 10 05:59:50 raspberrypi kernel: [   13.910689]  MAI: soc_pcm_open() failed (-19)
+Jul 10 05:59:50 raspberrypi kernel: [   13.910901] hdmi-audio-codec hdmi-audio-codec.3.auto: ASoC: error at snd_soc_dai_startup on i2s-hifi: -19
+Jul 10 05:59:50 raspberrypi kernel: [   13.910928]  MAI: soc_pcm_open() failed (-19)
+Jul 10 05:59:50 raspberrypi kernel: [   13.911205] hdmi-audio-codec hdmi-audio-codec.3.auto: ASoC: error at snd_soc_dai_startup on i2s-hifi: -19
+Jul 10 05:59:50 raspberrypi kernel: [   13.911243]  MAI: soc_pcm_open() failed (-19)
+Jul 10 05:59:51 raspberrypi kernel: [   14.571379] IPv6: ADDRCONF(NETDEV_CHANGE): wlan0: link becomes ready
+Jul 10 05:59:51 raspberrypi kernel: [   14.741685] Bluetooth: Core ver 2.22
+Jul 10 05:59:51 raspberrypi kernel: [   14.742176] NET: Registered PF_BLUETOOTH protocol family
+Jul 10 05:59:51 raspberrypi kernel: [   14.742185] Bluetooth: HCI device and connection manager initialized
+Jul 10 05:59:51 raspberrypi kernel: [   14.742198] Bluetooth: HCI socket layer initialized
+Jul 10 05:59:51 raspberrypi kernel: [   14.742205] Bluetooth: L2CAP socket layer initialized
+Jul 10 05:59:51 raspberrypi kernel: [   14.742220] Bluetooth: SCO socket layer initialized
+Jul 10 05:59:51 raspberrypi kernel: [   14.755780] Bluetooth: HCI UART driver ver 2.3
+Jul 10 05:59:51 raspberrypi kernel: [   14.755801] Bluetooth: HCI UART protocol H4 registered
+Jul 10 05:59:51 raspberrypi kernel: [   14.756220] Bluetooth: HCI UART protocol Three-wire (H5) registered
+Jul 10 05:59:51 raspberrypi kernel: [   14.757342] Bluetooth: HCI UART protocol Broadcom registered
+Jul 10 05:59:51 raspberrypi kernel: [   15.011046] Bluetooth: BNEP (Ethernet Emulation) ver 1.3
+Jul 10 05:59:51 raspberrypi kernel: [   15.011076] Bluetooth: BNEP filters: protocol multicast
+Jul 10 05:59:51 raspberrypi kernel: [   15.011099] Bluetooth: BNEP socket layer initialized
+Jul 10 05:59:51 raspberrypi kernel: [   15.036548] NET: Registered PF_ALG protocol family
+Jul 10 05:59:52 raspberrypi kernel: [   15.172612] Bluetooth: RFCOMM TTY layer initialized
+Jul 10 05:59:52 raspberrypi kernel: [   15.172643] Bluetooth: RFCOMM socket layer initialized
+Jul 10 05:59:52 raspberrypi kernel: [   15.172671] Bluetooth: RFCOMM ver 1.11
+Jul 10 05:59:53 raspberrypi kernel: [   16.747124] ICMPv6: process `dhcpcd' is using deprecated sysctl (syscall) net.ipv6.neigh.wlan0.retrans_time - use net.ipv6.neigh.wlan0.retrans_time_ms instead
+Jul 10 08:55:08 raspberrypi kernel: [   31.711111] cam1-reg: disabling
+Jul 10 08:55:08 raspberrypi kernel: [   31.711146] cam-dummy-reg: disabling
+Jul 10 14:25:29 raspberrypi kernel: [19853.002866] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=524 TOS=0x00 PREC=0x00 TTL=255 ID=17391 PROTO=UDP SPT=5353 DPT=5353 LEN=504 
+Jul 10 14:25:30 raspberrypi kernel: [19853.960026] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=203 TOS=0x00 PREC=0x00 TTL=255 ID=29373 PROTO=UDP SPT=5353 DPT=5353 LEN=183 
+Jul 10 14:25:32 raspberrypi kernel: [19855.308516] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=240 TOS=0x00 PREC=0x00 TTL=255 ID=23389 PROTO=UDP SPT=5353 DPT=5353 LEN=220 
+Jul 10 14:25:32 raspberrypi kernel: [19855.409185] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=280 TOS=0x00 PREC=0x00 TTL=255 ID=15324 PROTO=UDP SPT=5353 DPT=5353 LEN=260 
+Jul 10 14:25:32 raspberrypi kernel: [19855.609590] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=221 TOS=0x00 PREC=0x00 TTL=255 ID=37373 PROTO=UDP SPT=5353 DPT=5353 LEN=201 
+Jul 10 14:25:32 raspberrypi kernel: [19855.910490] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=221 TOS=0x00 PREC=0x00 TTL=255 ID=3722 PROTO=UDP SPT=5353 DPT=5353 LEN=201 
+Jul 10 14:25:33 raspberrypi kernel: [19856.112420] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=365 TOS=0x00 PREC=0x00 TTL=255 ID=47411 PROTO=UDP SPT=5353 DPT=5353 LEN=345 
+Jul 10 14:25:33 raspberrypi kernel: [19856.313179] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=240 TOS=0x00 PREC=0x00 TTL=255 ID=25644 PROTO=UDP SPT=5353 DPT=5353 LEN=220 
+Jul 10 14:25:33 raspberrypi kernel: [19856.411561] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=138 TOS=0x00 PREC=0x00 TTL=255 ID=22089 PROTO=UDP SPT=5353 DPT=5353 LEN=118 
+Jul 10 14:25:34 raspberrypi kernel: [19857.116007] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=365 TOS=0x00 PREC=0x00 TTL=255 ID=63707 PROTO=UDP SPT=5353 DPT=5353 LEN=345 
+Jul 10 14:25:35 raspberrypi kernel: [19858.322669] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=524 TOS=0x00 PREC=0x00 TTL=255 ID=11852 PROTO=UDP SPT=5353 DPT=5353 LEN=504 
+Jul 10 14:25:36 raspberrypi kernel: [19859.422201] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=138 TOS=0x00 PREC=0x00 TTL=255 ID=33171 PROTO=UDP SPT=5353 DPT=5353 LEN=118 
+Jul 10 14:25:36 raspberrypi kernel: [19859.426448] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=203 TOS=0x00 PREC=0x00 TTL=255 ID=30705 PROTO=UDP SPT=5353 DPT=5353 LEN=183 
+Jul 10 14:25:37 raspberrypi kernel: [19860.828006] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=240 TOS=0x00 PREC=0x00 TTL=255 ID=340 PROTO=UDP SPT=5353 DPT=5353 LEN=220 
+Jul 10 14:25:37 raspberrypi kernel: [19861.028991] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=280 TOS=0x00 PREC=0x00 TTL=255 ID=58955 PROTO=UDP SPT=5353 DPT=5353 LEN=260 
+Jul 10 14:25:38 raspberrypi kernel: [19861.329615] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=221 TOS=0x00 PREC=0x00 TTL=255 ID=16491 PROTO=UDP SPT=5353 DPT=5353 LEN=201 
+Jul 10 14:25:38 raspberrypi kernel: [19861.530306] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=221 TOS=0x00 PREC=0x00 TTL=255 ID=33970 PROTO=UDP SPT=5353 DPT=5353 LEN=201 
+Jul 10 14:25:38 raspberrypi kernel: [19861.832542] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=365 TOS=0x00 PREC=0x00 TTL=255 ID=15682 PROTO=UDP SPT=5353 DPT=5353 LEN=345 
+Jul 10 14:25:38 raspberrypi kernel: [19861.931862] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=240 TOS=0x00 PREC=0x00 TTL=255 ID=30923 PROTO=UDP SPT=5353 DPT=5353 LEN=220 
+Jul 10 14:25:38 raspberrypi kernel: [19862.031252] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=138 TOS=0x00 PREC=0x00 TTL=255 ID=2630 PROTO=UDP SPT=5353 DPT=5353 LEN=118 
+Jul 10 14:25:39 raspberrypi kernel: [19862.735725] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=365 TOS=0x00 PREC=0x00 TTL=255 ID=22227 PROTO=UDP SPT=5353 DPT=5353 LEN=345 
+Jul 10 14:25:40 raspberrypi kernel: [19863.831758] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=524 TOS=0x00 PREC=0x00 TTL=255 ID=57083 PROTO=UDP SPT=5353 DPT=5353 LEN=504 
+Jul 10 14:25:41 raspberrypi kernel: [19864.841813] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=203 TOS=0x00 PREC=0x00 TTL=255 ID=11743 PROTO=UDP SPT=5353 DPT=5353 LEN=183 
+Jul 10 14:25:46 raspberrypi kernel: [19869.658212] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=138 TOS=0x00 PREC=0x00 TTL=255 ID=36876 PROTO=UDP SPT=5353 DPT=5353 LEN=118 
+Jul 10 14:25:46 raspberrypi kernel: [19869.859841] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=240 TOS=0x00 PREC=0x00 TTL=255 ID=16982 PROTO=UDP SPT=5353 DPT=5353 LEN=220 
+Jul 10 14:25:47 raspberrypi kernel: [19870.160651] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=221 TOS=0x00 PREC=0x00 TTL=255 ID=13219 PROTO=UDP SPT=5353 DPT=5353 LEN=201 
+Jul 10 14:25:47 raspberrypi kernel: [19870.461716] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=221 TOS=0x00 PREC=0x00 TTL=255 ID=35646 PROTO=UDP SPT=5353 DPT=5353 LEN=201 
+Jul 10 14:25:47 raspberrypi kernel: [19870.763296] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=280 TOS=0x00 PREC=0x00 TTL=255 ID=42871 PROTO=UDP SPT=5353 DPT=5353 LEN=260 
+Jul 10 14:25:47 raspberrypi kernel: [19870.863243] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=240 TOS=0x00 PREC=0x00 TTL=255 ID=35680 PROTO=UDP SPT=5353 DPT=5353 LEN=220 
+Jul 10 14:25:48 raspberrypi kernel: [19871.064969] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=365 TOS=0x00 PREC=0x00 TTL=255 ID=9712 PROTO=UDP SPT=5353 DPT=5353 LEN=345 
+Jul 10 14:25:49 raspberrypi kernel: [19872.068579] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=365 TOS=0x00 PREC=0x00 TTL=255 ID=30836 PROTO=UDP SPT=5353 DPT=5353 LEN=345 
+Jul 10 14:25:49 raspberrypi kernel: [19872.870373] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=240 TOS=0x00 PREC=0x00 TTL=255 ID=54413 PROTO=UDP SPT=5353 DPT=5353 LEN=220 
+Jul 10 14:25:50 raspberrypi kernel: [19873.371110] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=118 TOS=0x00 PREC=0x00 TTL=255 ID=58957 PROTO=UDP SPT=5353 DPT=5353 LEN=98 
+Jul 10 14:25:50 raspberrypi kernel: [19873.772710] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=138 TOS=0x00 PREC=0x00 TTL=255 ID=5889 PROTO=UDP SPT=5353 DPT=5353 LEN=118 
+Jul 10 14:25:51 raspberrypi kernel: [19874.075692] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=365 TOS=0x00 PREC=0x00 TTL=255 ID=22177 PROTO=UDP SPT=5353 DPT=5353 LEN=345 
+Jul 10 14:25:51 raspberrypi kernel: [19874.374631] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=118 TOS=0x00 PREC=0x00 TTL=255 ID=13763 PROTO=UDP SPT=5353 DPT=5353 LEN=98 
+Jul 10 14:25:53 raspberrypi kernel: [19876.887001] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=524 TOS=0x00 PREC=0x00 TTL=255 ID=21034 PROTO=UDP SPT=5353 DPT=5353 LEN=504 
+Jul 10 14:25:54 raspberrypi kernel: [19877.385313] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=118 TOS=0x00 PREC=0x00 TTL=255 ID=30603 PROTO=UDP SPT=5353 DPT=5353 LEN=98 
+Jul 10 14:25:58 raspberrypi kernel: [19881.199403] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=203 TOS=0x00 PREC=0x00 TTL=255 ID=34226 PROTO=UDP SPT=5353 DPT=5353 LEN=183 
+Jul 10 14:25:59 raspberrypi kernel: [19882.102001] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=138 TOS=0x00 PREC=0x00 TTL=255 ID=64970 PROTO=UDP SPT=5353 DPT=5353 LEN=118 
+Jul 10 14:25:59 raspberrypi kernel: [19882.203186] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=240 TOS=0x00 PREC=0x00 TTL=255 ID=31656 PROTO=UDP SPT=5353 DPT=5353 LEN=220 
+Jul 10 14:25:59 raspberrypi kernel: [19882.306104] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=221 TOS=0x00 PREC=0x00 TTL=255 ID=51442 PROTO=UDP SPT=5353 DPT=5353 LEN=201 
+Jul 10 14:25:59 raspberrypi kernel: [19882.504102] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=221 TOS=0x00 PREC=0x00 TTL=255 ID=52438 PROTO=UDP SPT=5353 DPT=5353 LEN=201 
+Jul 10 14:25:59 raspberrypi kernel: [19882.805204] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=221 TOS=0x00 PREC=0x00 TTL=255 ID=12925 PROTO=UDP SPT=5353 DPT=5353 LEN=201 
+Jul 10 14:25:59 raspberrypi kernel: [19883.007061] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=365 TOS=0x00 PREC=0x00 TTL=255 ID=50804 PROTO=UDP SPT=5353 DPT=5353 LEN=345 
+Jul 10 14:26:00 raspberrypi kernel: [19883.105481] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=138 TOS=0x00 PREC=0x00 TTL=255 ID=63787 PROTO=UDP SPT=5353 DPT=5353 LEN=118 
+Jul 10 14:26:00 raspberrypi kernel: [19883.207321] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=240 TOS=0x00 PREC=0x00 TTL=255 ID=43354 PROTO=UDP SPT=5353 DPT=5353 LEN=220 
+Jul 10 14:26:01 raspberrypi kernel: [19884.111022] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=365 TOS=0x00 PREC=0x00 TTL=255 ID=29300 PROTO=UDP SPT=5353 DPT=5353 LEN=345 
+Jul 10 14:26:02 raspberrypi kernel: [19885.216280] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=524 TOS=0x00 PREC=0x00 TTL=255 ID=56225 PROTO=UDP SPT=5353 DPT=5353 LEN=504 
+Jul 10 14:26:03 raspberrypi kernel: [19886.116322] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=138 TOS=0x00 PREC=0x00 TTL=255 ID=28356 PROTO=UDP SPT=5353 DPT=5353 LEN=118 
+Jul 10 14:26:06 raspberrypi kernel: [19889.230399] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=524 TOS=0x00 PREC=0x00 TTL=255 ID=44670 PROTO=UDP SPT=5353 DPT=5353 LEN=504 
+Jul 10 14:26:12 raspberrypi kernel: [19895.151448] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=138 TOS=0x00 PREC=0x00 TTL=255 ID=43388 PROTO=UDP SPT=5353 DPT=5353 LEN=118 
+Jul 10 14:26:39 raspberrypi kernel: [19922.243425] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=138 TOS=0x00 PREC=0x00 TTL=255 ID=48946 PROTO=UDP SPT=5353 DPT=5353 LEN=118 
+Jul 10 14:27:11 raspberrypi kernel: [19954.263996] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=e4:5f:01:2d:ad:13:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=192.168.100.35 LEN=64 TOS=0x00 PREC=0x00 TTL=64 ID=0 DF PROTO=TCP SPT=51952 DPT=3389 WINDOW=65535 RES=0x00 SYN URGP=0 
+Jul 10 14:27:13 raspberrypi kernel: [19956.865046] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=e4:5f:01:2d:ad:13:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=192.168.100.35 LEN=64 TOS=0x00 PREC=0x00 TTL=64 ID=0 DF PROTO=TCP SPT=51953 DPT=3389 WINDOW=65535 RES=0x00 SYN URGP=0 
+Jul 10 14:28:00 raspberrypi kernel: [20003.328739] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=109 TOS=0x00 PREC=0x00 TTL=255 ID=18397 PROTO=UDP SPT=5353 DPT=5353 LEN=89 
+Jul 10 14:33:51 raspberrypi kernel: [20354.365862] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:b8:27:eb:7d:0e:e5:08:00 SRC=192.168.100.31 DST=224.0.0.251 LEN=73 TOS=0x00 PREC=0x00 TTL=255 ID=46936 DF PROTO=UDP SPT=5353 DPT=5353 LEN=53 
+Jul 10 14:34:50 raspberrypi kernel: [20413.773451] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=e4:5f:01:2d:ad:13:d0:c5:d3:c2:68:55:08:00 SRC=192.168.100.40 DST=192.168.100.35 LEN=60 TOS=0x10 PREC=0x00 TTL=64 ID=17909 DF PROTO=TCP SPT=50860 DPT=22 WINDOW=64240 RES=0x00 SYN URGP=0 
+Jul 10 14:35:56 raspberrypi kernel: [20479.809235] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=e4:5f:01:2d:ad:13:d0:c5:d3:c2:68:55:08:00 SRC=192.168.100.40 DST=192.168.100.35 LEN=60 TOS=0x10 PREC=0x00 TTL=64 ID=62722 DF PROTO=TCP SPT=50866 DPT=22 WINDOW=64240 RES=0x00 SYN URGP=0 
+Jul 10 14:37:35 raspberrypi kernel: [20578.557627] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=ff:ff:ff:ff:ff:ff:8e:a9:b4:06:99:20:08:00 SRC=0.0.0.0 DST=255.255.255.255 LEN=328 TOS=0x00 PREC=0x00 TTL=255 ID=26020 PROTO=UDP SPT=68 DPT=67 LEN=308 
+Jul 10 14:37:37 raspberrypi kernel: [20580.161611] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=ff:ff:ff:ff:ff:ff:8e:a9:b4:06:99:20:08:00 SRC=0.0.0.0 DST=255.255.255.255 LEN=328 TOS=0x00 PREC=0x00 TTL=255 ID=26021 PROTO=UDP SPT=68 DPT=67 LEN=308 
+Jul 10 14:37:38 raspberrypi kernel: [20581.566693] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=ff:ff:ff:ff:ff:ff:8e:a9:b4:06:99:20:08:00 SRC=0.0.0.0 DST=255.255.255.255 LEN=328 TOS=0x00 PREC=0x00 TTL=255 ID=26022 PROTO=UDP SPT=68 DPT=67 LEN=308 
+Jul 10 14:37:40 raspberrypi kernel: [20583.373325] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=240 TOS=0x00 PREC=0x00 TTL=255 ID=1953 PROTO=UDP SPT=5353 DPT=5353 LEN=220 
+Jul 10 14:37:40 raspberrypi kernel: [20583.775352] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=142 TOS=0x00 PREC=0x00 TTL=255 ID=17617 PROTO=UDP SPT=5353 DPT=5353 LEN=122 
+Jul 10 14:37:40 raspberrypi kernel: [20583.873894] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=221 TOS=0x00 PREC=0x00 TTL=255 ID=59526 PROTO=UDP SPT=5353 DPT=5353 LEN=201 
+Jul 10 14:37:41 raspberrypi kernel: [20584.074619] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=221 TOS=0x00 PREC=0x00 TTL=255 ID=33257 PROTO=UDP SPT=5353 DPT=5353 LEN=201 
+Jul 10 14:37:41 raspberrypi kernel: [20584.376703] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=221 TOS=0x00 PREC=0x00 TTL=255 ID=12544 PROTO=UDP SPT=5353 DPT=5353 LEN=201 
+Jul 10 14:37:41 raspberrypi kernel: [20584.381985] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=240 TOS=0x00 PREC=0x00 TTL=255 ID=36813 PROTO=UDP SPT=5353 DPT=5353 LEN=220 
+Jul 10 14:37:43 raspberrypi kernel: [20586.383008] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=142 TOS=0x00 PREC=0x00 TTL=255 ID=53099 PROTO=UDP SPT=5353 DPT=5353 LEN=122 
+Jul 10 14:37:43 raspberrypi kernel: [20586.390306] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=524 TOS=0x00 PREC=0x00 TTL=255 ID=11159 PROTO=UDP SPT=5353 DPT=5353 LEN=504 
+Jul 10 14:37:44 raspberrypi kernel: [20587.388231] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=365 TOS=0x00 PREC=0x00 TTL=255 ID=14533 PROTO=UDP SPT=5353 DPT=5353 LEN=345 
+Jul 10 14:37:46 raspberrypi kernel: [20589.394822] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=142 TOS=0x00 PREC=0x00 TTL=255 ID=31266 PROTO=UDP SPT=5353 DPT=5353 LEN=122 
+Jul 10 14:37:46 raspberrypi kernel: [20589.400798] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=365 TOS=0x00 PREC=0x00 TTL=255 ID=34645 PROTO=UDP SPT=5353 DPT=5353 LEN=345 
+Jul 10 14:37:47 raspberrypi kernel: [20590.397467] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=240 TOS=0x00 PREC=0x00 TTL=255 ID=31522 PROTO=UDP SPT=5353 DPT=5353 LEN=220 
+Jul 10 14:37:50 raspberrypi kernel: [20593.408813] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=365 TOS=0x00 PREC=0x00 TTL=255 ID=38174 PROTO=UDP SPT=5353 DPT=5353 LEN=345 
+Jul 10 14:37:55 raspberrypi kernel: [20598.424476] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=142 TOS=0x00 PREC=0x00 TTL=255 ID=11753 PROTO=UDP SPT=5353 DPT=5353 LEN=122 
+Jul 10 14:38:10 raspberrypi kernel: [20613.080167] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=ff:ff:ff:ff:ff:ff:50:7a:55:bf:a8:17:08:00 SRC=0.0.0.0 DST=255.255.255.255 LEN=328 TOS=0x00 PREC=0x00 TTL=255 ID=31241 PROTO=UDP SPT=68 DPT=67 LEN=308 
+Jul 10 14:38:10 raspberrypi kernel: [20613.278252] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:50:7a:55:bf:a8:17:08:00 SRC=192.168.100.6 DST=224.0.0.251 LEN=140 TOS=0x00 PREC=0x00 TTL=255 ID=17848 PROTO=UDP SPT=5353 DPT=5353 LEN=120 
+Jul 10 14:38:11 raspberrypi kernel: [20614.380720] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:50:7a:55:bf:a8:17:08:00 SRC=192.168.100.6 DST=224.0.0.251 LEN=140 TOS=0x00 PREC=0x00 TTL=255 ID=21338 PROTO=UDP SPT=5353 DPT=5353 LEN=120 
+Jul 10 14:38:14 raspberrypi kernel: [20617.290998] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:50:7a:55:bf:a8:17:08:00 SRC=192.168.100.6 DST=224.0.0.251 LEN=140 TOS=0x00 PREC=0x00 TTL=255 ID=33378 PROTO=UDP SPT=5353 DPT=5353 LEN=120 
+Jul 10 14:38:22 raspberrypi kernel: [20625.519542] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=96 TOS=0x00 PREC=0x00 TTL=255 ID=63592 PROTO=UDP SPT=5353 DPT=5353 LEN=76 
+Jul 10 14:38:23 raspberrypi kernel: [20626.322751] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:50:7a:55:bf:a8:17:08:00 SRC=192.168.100.6 DST=224.0.0.251 LEN=140 TOS=0x00 PREC=0x00 TTL=255 ID=1783 PROTO=UDP SPT=5353 DPT=5353 LEN=120 
+Jul 10 14:38:50 raspberrypi kernel: [20653.418207] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:50:7a:55:bf:a8:17:08:00 SRC=192.168.100.6 DST=224.0.0.251 LEN=140 TOS=0x00 PREC=0x00 TTL=255 ID=55560 PROTO=UDP SPT=5353 DPT=5353 LEN=120 
+Jul 10 14:38:57 raspberrypi kernel: [20660.241577] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=65 TOS=0x00 PREC=0x00 TTL=255 ID=36644 PROTO=UDP SPT=5353 DPT=5353 LEN=45 
+Jul 10 14:39:00 raspberrypi kernel: [20663.252187] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=65 TOS=0x00 PREC=0x00 TTL=255 ID=43830 PROTO=UDP SPT=5353 DPT=5353 LEN=45 
+Jul 10 14:39:09 raspberrypi kernel: [20672.183712] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=65 TOS=0x00 PREC=0x00 TTL=255 ID=24327 PROTO=UDP SPT=5353 DPT=5353 LEN=45 
+Jul 10 14:39:33 raspberrypi kernel: [20696.169015] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=174 TOS=0x00 PREC=0x00 TTL=255 ID=44307 PROTO=UDP SPT=5353 DPT=5353 LEN=154 
+Jul 10 14:39:49 raspberrypi kernel: [20712.125137] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=157 TOS=0x00 PREC=0x00 TTL=255 ID=36415 PROTO=UDP SPT=5353 DPT=5353 LEN=137 
+Jul 10 14:39:49 raspberrypi kernel: [20713.028961] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=240 TOS=0x00 PREC=0x00 TTL=255 ID=52913 PROTO=UDP SPT=5353 DPT=5353 LEN=220 
+Jul 10 14:39:50 raspberrypi kernel: [20713.129713] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=299 TOS=0x00 PREC=0x00 TTL=255 ID=58185 PROTO=UDP SPT=5353 DPT=5353 LEN=279 
+Jul 10 14:39:50 raspberrypi kernel: [20713.329767] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=221 TOS=0x00 PREC=0x00 TTL=255 ID=57354 PROTO=UDP SPT=5353 DPT=5353 LEN=201 
+Jul 10 14:39:50 raspberrypi kernel: [20713.630775] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=221 TOS=0x00 PREC=0x00 TTL=255 ID=21772 PROTO=UDP SPT=5353 DPT=5353 LEN=201 
+Jul 10 14:39:50 raspberrypi kernel: [20713.832781] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=365 TOS=0x00 PREC=0x00 TTL=255 ID=25966 PROTO=UDP SPT=5353 DPT=5353 LEN=345 
+Jul 10 14:39:50 raspberrypi kernel: [20714.032426] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=240 TOS=0x00 PREC=0x00 TTL=255 ID=553 PROTO=UDP SPT=5353 DPT=5353 LEN=220 
+Jul 10 14:39:51 raspberrypi kernel: [20714.836295] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=365 TOS=0x00 PREC=0x00 TTL=255 ID=23195 PROTO=UDP SPT=5353 DPT=5353 LEN=345 
+Jul 10 14:39:52 raspberrypi kernel: [20716.041863] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=524 TOS=0x00 PREC=0x00 TTL=255 ID=9764 PROTO=UDP SPT=5353 DPT=5353 LEN=504 
+Jul 10 14:39:53 raspberrypi kernel: [20716.139860] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=157 TOS=0x00 PREC=0x00 TTL=255 ID=42177 PROTO=UDP SPT=5353 DPT=5353 LEN=137 
+Jul 10 14:39:56 raspberrypi kernel: [20720.056050] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=524 TOS=0x00 PREC=0x00 TTL=255 ID=30596 PROTO=UDP SPT=5353 DPT=5353 LEN=504 
+Jul 10 14:40:02 raspberrypi kernel: [20725.171291] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=157 TOS=0x00 PREC=0x00 TTL=255 ID=49477 PROTO=UDP SPT=5353 DPT=5353 LEN=137 
+Jul 10 14:40:18 raspberrypi kernel: [20741.730517] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=203 TOS=0x00 PREC=0x00 TTL=255 ID=22732 PROTO=UDP SPT=5353 DPT=5353 LEN=183 
+Jul 10 14:40:19 raspberrypi kernel: [20742.432449] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=240 TOS=0x00 PREC=0x00 TTL=255 ID=33375 PROTO=UDP SPT=5353 DPT=5353 LEN=220 
+Jul 10 14:40:19 raspberrypi kernel: [20742.633612] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=299 TOS=0x00 PREC=0x00 TTL=255 ID=40250 PROTO=UDP SPT=5353 DPT=5353 LEN=279 
+Jul 10 14:40:19 raspberrypi kernel: [20742.934091] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=221 TOS=0x00 PREC=0x00 TTL=255 ID=59538 PROTO=UDP SPT=5353 DPT=5353 LEN=201 
+Jul 10 14:40:20 raspberrypi kernel: [20743.134753] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=221 TOS=0x00 PREC=0x00 TTL=255 ID=34537 PROTO=UDP SPT=5353 DPT=5353 LEN=201 
+Jul 10 14:40:20 raspberrypi kernel: [20743.437032] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=365 TOS=0x00 PREC=0x00 TTL=255 ID=46259 PROTO=UDP SPT=5353 DPT=5353 LEN=345 
+Jul 10 14:40:20 raspberrypi kernel: [20743.536248] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=240 TOS=0x00 PREC=0x00 TTL=255 ID=21798 PROTO=UDP SPT=5353 DPT=5353 LEN=220 
+Jul 10 14:40:20 raspberrypi kernel: [20743.636049] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=157 TOS=0x00 PREC=0x00 TTL=255 ID=55028 PROTO=UDP SPT=5353 DPT=5353 LEN=137 
+Jul 10 14:40:21 raspberrypi kernel: [20744.441549] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=365 TOS=0x00 PREC=0x00 TTL=255 ID=57263 PROTO=UDP SPT=5353 DPT=5353 LEN=345 
+Jul 10 14:40:22 raspberrypi kernel: [20745.545752] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=524 TOS=0x00 PREC=0x00 TTL=255 ID=27819 PROTO=UDP SPT=5353 DPT=5353 LEN=504 
+Jul 10 14:40:23 raspberrypi kernel: [20746.646642] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=157 TOS=0x00 PREC=0x00 TTL=255 ID=14744 PROTO=UDP SPT=5353 DPT=5353 LEN=137 
+Jul 10 14:40:26 raspberrypi kernel: [20749.560030] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=524 TOS=0x00 PREC=0x00 TTL=255 ID=13665 PROTO=UDP SPT=5353 DPT=5353 LEN=504 
+Jul 10 14:40:26 raspberrypi kernel: [20749.567240] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=203 TOS=0x00 PREC=0x00 TTL=255 ID=57249 PROTO=UDP SPT=5353 DPT=5353 LEN=183 
+Jul 10 14:40:33 raspberrypi kernel: [20756.281364] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=157 TOS=0x00 PREC=0x00 TTL=255 ID=36072 PROTO=UDP SPT=5353 DPT=5353 LEN=137 
+Jul 10 14:40:33 raspberrypi kernel: [20756.381506] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=240 TOS=0x00 PREC=0x00 TTL=255 ID=12337 PROTO=UDP SPT=5353 DPT=5353 LEN=220 
+Jul 10 14:40:33 raspberrypi kernel: [20756.481703] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=221 TOS=0x00 PREC=0x00 TTL=255 ID=8797 PROTO=UDP SPT=5353 DPT=5353 LEN=201 
+Jul 10 14:40:33 raspberrypi kernel: [20756.782754] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=221 TOS=0x00 PREC=0x00 TTL=255 ID=17427 PROTO=UDP SPT=5353 DPT=5353 LEN=201 
+Jul 10 14:40:33 raspberrypi kernel: [20756.983568] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=221 TOS=0x00 PREC=0x00 TTL=255 ID=39942 PROTO=UDP SPT=5353 DPT=5353 LEN=201 
+Jul 10 14:40:34 raspberrypi kernel: [20757.285759] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=365 TOS=0x00 PREC=0x00 TTL=255 ID=59039 PROTO=UDP SPT=5353 DPT=5353 LEN=345 
+Jul 10 14:40:34 raspberrypi kernel: [20757.291375] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=157 TOS=0x00 PREC=0x00 TTL=255 ID=6939 PROTO=UDP SPT=5353 DPT=5353 LEN=137 
+Jul 10 14:40:34 raspberrypi kernel: [20757.385091] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=240 TOS=0x00 PREC=0x00 TTL=255 ID=27595 PROTO=UDP SPT=5353 DPT=5353 LEN=220 
+Jul 10 14:40:35 raspberrypi kernel: [20758.289314] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=365 TOS=0x00 PREC=0x00 TTL=255 ID=25880 PROTO=UDP SPT=5353 DPT=5353 LEN=345 
+Jul 10 14:40:36 raspberrypi kernel: [20759.394595] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=524 TOS=0x00 PREC=0x00 TTL=255 ID=5481 PROTO=UDP SPT=5353 DPT=5353 LEN=504 
+Jul 10 14:40:37 raspberrypi kernel: [20760.294731] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=157 TOS=0x00 PREC=0x00 TTL=255 ID=36686 PROTO=UDP SPT=5353 DPT=5353 LEN=137 
+Jul 10 14:40:37 raspberrypi kernel: [20760.299090] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=203 TOS=0x00 PREC=0x00 TTL=255 ID=26171 PROTO=UDP SPT=5353 DPT=5353 LEN=183 
+Jul 10 14:40:49 raspberrypi kernel: [20772.538590] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=240 TOS=0x00 PREC=0x00 TTL=255 ID=38848 PROTO=UDP SPT=5353 DPT=5353 LEN=220 
+Jul 10 14:40:49 raspberrypi kernel: [20772.641403] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=299 TOS=0x00 PREC=0x00 TTL=255 ID=636 PROTO=UDP SPT=5353 DPT=5353 LEN=279 
+Jul 10 14:40:50 raspberrypi kernel: [20773.140489] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=221 TOS=0x00 PREC=0x00 TTL=255 ID=8272 PROTO=UDP SPT=5353 DPT=5353 LEN=201 
+Jul 10 14:40:50 raspberrypi kernel: [20773.344013] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=365 TOS=0x00 PREC=0x00 TTL=255 ID=5594 PROTO=UDP SPT=5353 DPT=5353 LEN=345 
+Jul 10 14:40:50 raspberrypi kernel: [20773.442694] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=240 TOS=0x00 PREC=0x00 TTL=255 ID=9078 PROTO=UDP SPT=5353 DPT=5353 LEN=220 
+Jul 10 14:40:51 raspberrypi kernel: [20774.347141] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=365 TOS=0x00 PREC=0x00 TTL=255 ID=34795 PROTO=UDP SPT=5353 DPT=5353 LEN=345 
+Jul 10 14:40:52 raspberrypi kernel: [20775.551492] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=524 TOS=0x00 PREC=0x00 TTL=255 ID=61945 PROTO=UDP SPT=5353 DPT=5353 LEN=504 
+Jul 10 14:40:53 raspberrypi kernel: [20776.654506] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=157 TOS=0x00 PREC=0x00 TTL=255 ID=16623 PROTO=UDP SPT=5353 DPT=5353 LEN=137 
+Jul 10 14:41:02 raspberrypi kernel: [20785.684198] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=157 TOS=0x00 PREC=0x00 TTL=255 ID=56862 PROTO=UDP SPT=5353 DPT=5353 LEN=137 
+Jul 10 14:41:29 raspberrypi kernel: [20812.779544] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=157 TOS=0x00 PREC=0x00 TTL=255 ID=17964 PROTO=UDP SPT=5353 DPT=5353 LEN=137 
+Jul 10 14:41:33 raspberrypi kernel: [20816.593421] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=203 TOS=0x00 PREC=0x00 TTL=255 ID=27373 PROTO=UDP SPT=5353 DPT=5353 LEN=183 
+Jul 10 14:41:35 raspberrypi kernel: [20818.901748] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=240 TOS=0x00 PREC=0x00 TTL=255 ID=12583 PROTO=UDP SPT=5353 DPT=5353 LEN=220 
+Jul 10 14:41:35 raspberrypi kernel: [20819.002591] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=299 TOS=0x00 PREC=0x00 TTL=255 ID=25380 PROTO=UDP SPT=5353 DPT=5353 LEN=279 
+Jul 10 14:41:36 raspberrypi kernel: [20819.202667] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=221 TOS=0x00 PREC=0x00 TTL=255 ID=65 PROTO=UDP SPT=5353 DPT=5353 LEN=201 
+Jul 10 14:41:36 raspberrypi kernel: [20819.505223] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=221 TOS=0x00 PREC=0x00 TTL=255 ID=46563 PROTO=UDP SPT=5353 DPT=5353 LEN=201 
+Jul 10 14:41:36 raspberrypi kernel: [20819.706866] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=365 TOS=0x00 PREC=0x00 TTL=255 ID=19638 PROTO=UDP SPT=5353 DPT=5353 LEN=345 
+Jul 10 14:41:36 raspberrypi kernel: [20820.004918] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=157 TOS=0x00 PREC=0x00 TTL=255 ID=32853 PROTO=UDP SPT=5353 DPT=5353 LEN=137 
+Jul 10 14:41:37 raspberrypi kernel: [20820.709155] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=365 TOS=0x00 PREC=0x00 TTL=255 ID=64993 PROTO=UDP SPT=5353 DPT=5353 LEN=345 
+Jul 10 14:41:38 raspberrypi kernel: [20821.917000] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=524 TOS=0x00 PREC=0x00 TTL=255 ID=53799 PROTO=UDP SPT=5353 DPT=5353 LEN=504 
+Jul 10 14:41:39 raspberrypi kernel: [20823.015560] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=157 TOS=0x00 PREC=0x00 TTL=255 ID=23634 PROTO=UDP SPT=5353 DPT=5353 LEN=137 
+Jul 10 14:41:42 raspberrypi kernel: [20825.828562] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=524 TOS=0x00 PREC=0x00 TTL=255 ID=59814 PROTO=UDP SPT=5353 DPT=5353 LEN=504 
+Jul 10 14:41:48 raspberrypi kernel: [20832.047396] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=157 TOS=0x00 PREC=0x00 TTL=255 ID=56627 PROTO=UDP SPT=5353 DPT=5353 LEN=137 
+Jul 10 14:41:49 raspberrypi kernel: [20832.951241] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=203 TOS=0x00 PREC=0x00 TTL=255 ID=45563 PROTO=UDP SPT=5353 DPT=5353 LEN=183 
+Jul 10 14:41:52 raspberrypi kernel: [20835.159261] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=240 TOS=0x00 PREC=0x00 TTL=255 ID=46533 PROTO=UDP SPT=5353 DPT=5353 LEN=220 
+Jul 10 14:41:52 raspberrypi kernel: [20835.358973] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=157 TOS=0x00 PREC=0x00 TTL=255 ID=36763 PROTO=UDP SPT=5353 DPT=5353 LEN=137 
+Jul 10 14:41:52 raspberrypi kernel: [20835.660487] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=221 TOS=0x00 PREC=0x00 TTL=255 ID=12039 PROTO=UDP SPT=5353 DPT=5353 LEN=201 
+Jul 10 14:41:52 raspberrypi kernel: [20835.961686] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=221 TOS=0x00 PREC=0x00 TTL=255 ID=62182 PROTO=UDP SPT=5353 DPT=5353 LEN=201 
+Jul 10 14:41:53 raspberrypi kernel: [20836.163440] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=221 TOS=0x00 PREC=0x00 TTL=255 ID=25230 PROTO=UDP SPT=5353 DPT=5353 LEN=201 
+Jul 10 14:41:53 raspberrypi kernel: [20836.262954] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=240 TOS=0x00 PREC=0x00 TTL=255 ID=8709 PROTO=UDP SPT=5353 DPT=5353 LEN=220 
+Jul 10 14:41:53 raspberrypi kernel: [20836.362554] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=157 TOS=0x00 PREC=0x00 TTL=255 ID=21703 PROTO=UDP SPT=5353 DPT=5353 LEN=137 
+Jul 10 14:41:53 raspberrypi kernel: [20836.464711] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=365 TOS=0x00 PREC=0x00 TTL=255 ID=16816 PROTO=UDP SPT=5353 DPT=5353 LEN=345 
+Jul 10 14:41:54 raspberrypi kernel: [20837.568555] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=365 TOS=0x00 PREC=0x00 TTL=255 ID=6898 PROTO=UDP SPT=5353 DPT=5353 LEN=345 
+Jul 10 14:41:55 raspberrypi kernel: [20838.270220] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=240 TOS=0x00 PREC=0x00 TTL=255 ID=7945 PROTO=UDP SPT=5353 DPT=5353 LEN=220 
+Jul 10 14:41:59 raspberrypi kernel: [20842.286578] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=524 TOS=0x00 PREC=0x00 TTL=255 ID=33777 PROTO=UDP SPT=5353 DPT=5353 LEN=504 
+Jul 10 14:42:05 raspberrypi kernel: [20848.104386] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=203 TOS=0x00 PREC=0x00 TTL=255 ID=57878 PROTO=UDP SPT=5353 DPT=5353 LEN=183 
+Jul 10 14:42:09 raspberrypi kernel: [20852.319540] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=240 TOS=0x00 PREC=0x00 TTL=255 ID=10219 PROTO=UDP SPT=5353 DPT=5353 LEN=220 
+Jul 10 14:42:09 raspberrypi kernel: [20852.327667] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=299 TOS=0x00 PREC=0x00 TTL=255 ID=5233 PROTO=UDP SPT=5353 DPT=5353 LEN=279 
+Jul 10 14:42:09 raspberrypi kernel: [20852.620290] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=221 TOS=0x00 PREC=0x00 TTL=255 ID=43652 PROTO=UDP SPT=5353 DPT=5353 LEN=201 
+Jul 10 14:42:09 raspberrypi kernel: [20852.821066] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=221 TOS=0x00 PREC=0x00 TTL=255 ID=60365 PROTO=UDP SPT=5353 DPT=5353 LEN=201 
+Jul 10 14:42:10 raspberrypi kernel: [20853.123296] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=365 TOS=0x00 PREC=0x00 TTL=255 ID=42618 PROTO=UDP SPT=5353 DPT=5353 LEN=345 
+Jul 10 14:42:10 raspberrypi kernel: [20853.322979] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=240 TOS=0x00 PREC=0x00 TTL=255 ID=37136 PROTO=UDP SPT=5353 DPT=5353 LEN=220 
+Jul 10 14:42:10 raspberrypi kernel: [20853.327738] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=157 TOS=0x00 PREC=0x00 TTL=255 ID=55951 PROTO=UDP SPT=5353 DPT=5353 LEN=137 
+Jul 10 14:42:11 raspberrypi kernel: [20854.126900] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=365 TOS=0x00 PREC=0x00 TTL=255 ID=19575 PROTO=UDP SPT=5353 DPT=5353 LEN=345 
+Jul 10 14:42:12 raspberrypi kernel: [20855.332378] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=524 TOS=0x00 PREC=0x00 TTL=255 ID=37597 PROTO=UDP SPT=5353 DPT=5353 LEN=504 
+Jul 10 14:42:13 raspberrypi kernel: [20856.332917] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=157 TOS=0x00 PREC=0x00 TTL=255 ID=51385 PROTO=UDP SPT=5353 DPT=5353 LEN=137 
+Jul 10 14:42:16 raspberrypi kernel: [20859.246210] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=524 TOS=0x00 PREC=0x00 TTL=255 ID=50259 PROTO=UDP SPT=5353 DPT=5353 LEN=504 
+Jul 10 14:42:20 raspberrypi kernel: [20863.558710] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=203 TOS=0x00 PREC=0x00 TTL=255 ID=32487 PROTO=UDP SPT=5353 DPT=5353 LEN=183 
+Jul 10 14:42:42 raspberrypi kernel: [20885.636759] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=240 TOS=0x00 PREC=0x00 TTL=255 ID=5532 PROTO=UDP SPT=5353 DPT=5353 LEN=220 
+Jul 10 14:42:42 raspberrypi kernel: [20885.737618] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=299 TOS=0x00 PREC=0x00 TTL=255 ID=42278 PROTO=UDP SPT=5353 DPT=5353 LEN=279 
+Jul 10 14:42:42 raspberrypi kernel: [20886.037942] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=221 TOS=0x00 PREC=0x00 TTL=255 ID=38281 PROTO=UDP SPT=5353 DPT=5353 LEN=201 
+Jul 10 14:42:43 raspberrypi kernel: [20886.238748] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=221 TOS=0x00 PREC=0x00 TTL=255 ID=30888 PROTO=UDP SPT=5353 DPT=5353 LEN=201 
+Jul 10 14:42:43 raspberrypi kernel: [20886.545110] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=365 TOS=0x00 PREC=0x00 TTL=255 ID=8149 PROTO=UDP SPT=5353 DPT=5353 LEN=345 
+Jul 10 14:42:43 raspberrypi kernel: [20886.659360] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=240 TOS=0x00 PREC=0x00 TTL=255 ID=22624 PROTO=UDP SPT=5353 DPT=5353 LEN=220 
+Jul 10 14:42:43 raspberrypi kernel: [20886.745348] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=157 TOS=0x00 PREC=0x00 TTL=255 ID=9029 PROTO=UDP SPT=5353 DPT=5353 LEN=137 
+Jul 10 14:42:44 raspberrypi kernel: [20887.544612] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=365 TOS=0x00 PREC=0x00 TTL=255 ID=11109 PROTO=UDP SPT=5353 DPT=5353 LEN=345 
+Jul 10 14:42:45 raspberrypi kernel: [20888.750070] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=524 TOS=0x00 PREC=0x00 TTL=255 ID=18794 PROTO=UDP SPT=5353 DPT=5353 LEN=504 
+Jul 10 14:42:46 raspberrypi kernel: [20889.750538] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=157 TOS=0x00 PREC=0x00 TTL=255 ID=24446 PROTO=UDP SPT=5353 DPT=5353 LEN=137 
+Jul 10 14:42:49 raspberrypi kernel: [20892.664183] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=524 TOS=0x00 PREC=0x00 TTL=255 ID=62376 PROTO=UDP SPT=5353 DPT=5353 LEN=504 
+Jul 10 14:42:55 raspberrypi kernel: [20898.782172] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=157 TOS=0x00 PREC=0x00 TTL=255 ID=54676 PROTO=UDP SPT=5353 DPT=5353 LEN=137 
+Jul 10 14:42:58 raspberrypi kernel: [20901.491947] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:50:7a:55:bf:a8:17:08:00 SRC=192.168.100.6 DST=224.0.0.251 LEN=140 TOS=0x00 PREC=0x00 TTL=255 ID=60145 PROTO=UDP SPT=5353 DPT=5353 LEN=120 
+Jul 10 14:42:59 raspberrypi kernel: [20902.495313] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:50:7a:55:bf:a8:17:08:00 SRC=192.168.100.6 DST=224.0.0.251 LEN=140 TOS=0x00 PREC=0x00 TTL=255 ID=1890 PROTO=UDP SPT=5353 DPT=5353 LEN=120 
+Jul 10 14:43:22 raspberrypi kernel: [20925.175702] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=203 TOS=0x00 PREC=0x00 TTL=255 ID=27927 PROTO=UDP SPT=5353 DPT=5353 LEN=183 
+Jul 10 14:43:27 raspberrypi kernel: [20930.093370] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=240 TOS=0x00 PREC=0x00 TTL=255 ID=64058 PROTO=UDP SPT=5353 DPT=5353 LEN=220 
+Jul 10 14:43:27 raspberrypi kernel: [20930.194113] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=299 TOS=0x00 PREC=0x00 TTL=255 ID=53309 PROTO=UDP SPT=5353 DPT=5353 LEN=279 
+Jul 10 14:43:27 raspberrypi kernel: [20930.494568] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=221 TOS=0x00 PREC=0x00 TTL=255 ID=45442 PROTO=UDP SPT=5353 DPT=5353 LEN=201 
+Jul 10 14:43:27 raspberrypi kernel: [20930.695177] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=221 TOS=0x00 PREC=0x00 TTL=255 ID=34877 PROTO=UDP SPT=5353 DPT=5353 LEN=201 
+Jul 10 14:43:27 raspberrypi kernel: [20930.997559] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=365 TOS=0x00 PREC=0x00 TTL=255 ID=31544 PROTO=UDP SPT=5353 DPT=5353 LEN=345 
+Jul 10 14:43:28 raspberrypi kernel: [20931.096751] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=240 TOS=0x00 PREC=0x00 TTL=255 ID=33604 PROTO=UDP SPT=5353 DPT=5353 LEN=220 
+Jul 10 14:43:28 raspberrypi kernel: [20931.196413] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=157 TOS=0x00 PREC=0x00 TTL=255 ID=39398 PROTO=UDP SPT=5353 DPT=5353 LEN=137 
+Jul 10 14:43:29 raspberrypi kernel: [20932.101388] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=365 TOS=0x00 PREC=0x00 TTL=255 ID=23764 PROTO=UDP SPT=5353 DPT=5353 LEN=345 
+Jul 10 14:43:30 raspberrypi kernel: [20933.206840] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=524 TOS=0x00 PREC=0x00 TTL=255 ID=38250 PROTO=UDP SPT=5353 DPT=5353 LEN=504 
+Jul 10 14:43:31 raspberrypi kernel: [20934.207059] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=157 TOS=0x00 PREC=0x00 TTL=255 ID=48312 PROTO=UDP SPT=5353 DPT=5353 LEN=137 
+Jul 10 14:43:38 raspberrypi kernel: [20941.332591] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=203 TOS=0x00 PREC=0x00 TTL=255 ID=32617 PROTO=UDP SPT=5353 DPT=5353 LEN=183 
+Jul 10 14:43:46 raspberrypi kernel: [20949.862231] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=157 TOS=0x00 PREC=0x00 TTL=255 ID=30315 PROTO=UDP SPT=5353 DPT=5353 LEN=137 
+Jul 10 14:43:46 raspberrypi kernel: [20950.063661] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=240 TOS=0x00 PREC=0x00 TTL=255 ID=36739 PROTO=UDP SPT=5353 DPT=5353 LEN=220 
+Jul 10 14:43:47 raspberrypi kernel: [20950.264082] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=221 TOS=0x00 PREC=0x00 TTL=255 ID=57049 PROTO=UDP SPT=5353 DPT=5353 LEN=201 
+Jul 10 14:43:47 raspberrypi kernel: [20950.464821] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=221 TOS=0x00 PREC=0x00 TTL=255 ID=27933 PROTO=UDP SPT=5353 DPT=5353 LEN=201 
+Jul 10 14:43:47 raspberrypi kernel: [20950.766043] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=221 TOS=0x00 PREC=0x00 TTL=255 ID=48713 PROTO=UDP SPT=5353 DPT=5353 LEN=201 
+Jul 10 14:43:47 raspberrypi kernel: [20950.866739] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=157 TOS=0x00 PREC=0x00 TTL=255 ID=540 PROTO=UDP SPT=5353 DPT=5353 LEN=137 
+Jul 10 14:43:47 raspberrypi kernel: [20950.967793] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=365 TOS=0x00 PREC=0x00 TTL=255 ID=27262 PROTO=UDP SPT=5353 DPT=5353 LEN=345 
+Jul 10 14:43:47 raspberrypi kernel: [20951.067053] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=240 TOS=0x00 PREC=0x00 TTL=255 ID=26946 PROTO=UDP SPT=5353 DPT=5353 LEN=220 
+Jul 10 14:43:48 raspberrypi kernel: [20951.972224] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=365 TOS=0x00 PREC=0x00 TTL=255 ID=14788 PROTO=UDP SPT=5353 DPT=5353 LEN=345 
+Jul 10 14:43:50 raspberrypi kernel: [20953.076584] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=524 TOS=0x00 PREC=0x00 TTL=255 ID=65214 PROTO=UDP SPT=5353 DPT=5353 LEN=504 
+Jul 10 14:43:50 raspberrypi kernel: [20953.876338] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=157 TOS=0x00 PREC=0x00 TTL=255 ID=19016 PROTO=UDP SPT=5353 DPT=5353 LEN=137 
+Jul 10 14:43:54 raspberrypi kernel: [20957.090847] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=524 TOS=0x00 PREC=0x00 TTL=255 ID=45516 PROTO=UDP SPT=5353 DPT=5353 LEN=504 
+Jul 10 14:43:59 raspberrypi kernel: [20962.908173] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=157 TOS=0x00 PREC=0x00 TTL=255 ID=28564 PROTO=UDP SPT=5353 DPT=5353 LEN=137 
+Jul 10 14:44:00 raspberrypi kernel: [20963.510130] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:50:7a:55:bf:a8:17:08:00 SRC=192.168.100.6 DST=224.0.0.251 LEN=140 TOS=0x00 PREC=0x00 TTL=255 ID=44310 PROTO=UDP SPT=5353 DPT=5353 LEN=120 
+Jul 10 14:44:01 raspberrypi kernel: [20964.616049] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:50:7a:55:bf:a8:17:08:00 SRC=192.168.100.6 DST=224.0.0.251 LEN=140 TOS=0x00 PREC=0x00 TTL=255 ID=58129 PROTO=UDP SPT=5353 DPT=5353 LEN=120 
+Jul 10 14:44:04 raspberrypi kernel: [20967.624667] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:50:7a:55:bf:a8:17:08:00 SRC=192.168.100.6 DST=224.0.0.251 LEN=140 TOS=0x00 PREC=0x00 TTL=255 ID=24236 PROTO=UDP SPT=5353 DPT=5353 LEN=120 
+Jul 10 14:44:04 raspberrypi kernel: [20967.725464] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=203 TOS=0x00 PREC=0x00 TTL=255 ID=27790 PROTO=UDP SPT=5353 DPT=5353 LEN=183 
+Jul 10 14:44:13 raspberrypi kernel: [20976.656483] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:50:7a:55:bf:a8:17:08:00 SRC=192.168.100.6 DST=224.0.0.251 LEN=140 TOS=0x00 PREC=0x00 TTL=255 ID=57541 PROTO=UDP SPT=5353 DPT=5353 LEN=120 
+Jul 10 14:44:15 raspberrypi kernel: [20978.965406] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=240 TOS=0x00 PREC=0x00 TTL=255 ID=32000 PROTO=UDP SPT=5353 DPT=5353 LEN=220 
+Jul 10 14:44:16 raspberrypi kernel: [20979.166550] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=299 TOS=0x00 PREC=0x00 TTL=255 ID=23115 PROTO=UDP SPT=5353 DPT=5353 LEN=279 
+Jul 10 14:44:16 raspberrypi kernel: [20979.467014] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=221 TOS=0x00 PREC=0x00 TTL=255 ID=47196 PROTO=UDP SPT=5353 DPT=5353 LEN=201 
+Jul 10 14:44:16 raspberrypi kernel: [20979.667712] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=221 TOS=0x00 PREC=0x00 TTL=255 ID=2072 PROTO=UDP SPT=5353 DPT=5353 LEN=201 
+Jul 10 14:44:16 raspberrypi kernel: [20979.969909] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=365 TOS=0x00 PREC=0x00 TTL=255 ID=61491 PROTO=UDP SPT=5353 DPT=5353 LEN=345 
+Jul 10 14:44:16 raspberrypi kernel: [20980.069267] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=240 TOS=0x00 PREC=0x00 TTL=255 ID=4288 PROTO=UDP SPT=5353 DPT=5353 LEN=220 
+Jul 10 14:44:17 raspberrypi kernel: [20980.169128] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=157 TOS=0x00 PREC=0x00 TTL=255 ID=59811 PROTO=UDP SPT=5353 DPT=5353 LEN=137 
+Jul 10 14:44:17 raspberrypi kernel: [20980.984372] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=365 TOS=0x00 PREC=0x00 TTL=255 ID=3634 PROTO=UDP SPT=5353 DPT=5353 LEN=345 
+Jul 10 14:44:19 raspberrypi kernel: [20982.079584] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=524 TOS=0x00 PREC=0x00 TTL=255 ID=28961 PROTO=UDP SPT=5353 DPT=5353 LEN=504 
+Jul 10 14:44:20 raspberrypi kernel: [20983.179521] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=157 TOS=0x00 PREC=0x00 TTL=255 ID=11426 PROTO=UDP SPT=5353 DPT=5353 LEN=137 
+Jul 10 14:44:22 raspberrypi kernel: [20985.992553] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=524 TOS=0x00 PREC=0x00 TTL=255 ID=60222 PROTO=UDP SPT=5353 DPT=5353 LEN=504 
+Jul 10 14:44:29 raspberrypi kernel: [20992.211326] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=157 TOS=0x00 PREC=0x00 TTL=255 ID=40009 PROTO=UDP SPT=5353 DPT=5353 LEN=137 
+Jul 10 14:44:59 raspberrypi kernel: [21022.318090] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=240 TOS=0x00 PREC=0x00 TTL=255 ID=10991 PROTO=UDP SPT=5353 DPT=5353 LEN=220 
+Jul 10 14:44:59 raspberrypi kernel: [21022.417712] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=157 TOS=0x00 PREC=0x00 TTL=255 ID=64602 PROTO=UDP SPT=5353 DPT=5353 LEN=137 
+Jul 10 14:45:00 raspberrypi kernel: [21023.120616] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=221 TOS=0x00 PREC=0x00 TTL=255 ID=26947 PROTO=UDP SPT=5353 DPT=5353 LEN=201 
+Jul 10 14:45:00 raspberrypi kernel: [21023.322430] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=221 TOS=0x00 PREC=0x00 TTL=255 ID=42170 PROTO=UDP SPT=5353 DPT=5353 LEN=201 
+Jul 10 14:45:00 raspberrypi kernel: [21023.327724] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=240 TOS=0x00 PREC=0x00 TTL=255 ID=19965 PROTO=UDP SPT=5353 DPT=5353 LEN=220 
+Jul 10 14:45:00 raspberrypi kernel: [21023.421246] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=157 TOS=0x00 PREC=0x00 TTL=255 ID=887 PROTO=UDP SPT=5353 DPT=5353 LEN=137 
+Jul 10 14:45:00 raspberrypi kernel: [21023.623610] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=365 TOS=0x00 PREC=0x00 TTL=255 ID=43138 PROTO=UDP SPT=5353 DPT=5353 LEN=345 
+Jul 10 14:45:01 raspberrypi kernel: [21024.627281] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=365 TOS=0x00 PREC=0x00 TTL=255 ID=30112 PROTO=UDP SPT=5353 DPT=5353 LEN=345 
+Jul 10 14:45:02 raspberrypi kernel: [21025.430312] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=240 TOS=0x00 PREC=0x00 TTL=255 ID=33988 PROTO=UDP SPT=5353 DPT=5353 LEN=220 
+Jul 10 14:45:03 raspberrypi kernel: [21026.432034] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=157 TOS=0x00 PREC=0x00 TTL=255 ID=34408 PROTO=UDP SPT=5353 DPT=5353 LEN=137 
+Jul 10 14:45:03 raspberrypi kernel: [21026.634917] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=365 TOS=0x00 PREC=0x00 TTL=255 ID=4775 PROTO=UDP SPT=5353 DPT=5353 LEN=345 
+Jul 10 14:45:05 raspberrypi kernel: [21028.238601] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=203 TOS=0x00 PREC=0x00 TTL=255 ID=42978 PROTO=UDP SPT=5353 DPT=5353 LEN=183 
+Jul 10 14:45:21 raspberrypi kernel: [21044.695098] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=e4:5f:01:2d:ad:13:d0:c5:d3:c2:68:55:08:00 SRC=192.168.100.40 DST=192.168.100.35 LEN=60 TOS=0x10 PREC=0x00 TTL=64 ID=59156 DF PROTO=TCP SPT=50868 DPT=22 WINDOW=64240 RES=0x00 SYN URGP=0 
+Jul 10 14:45:30 raspberrypi kernel: [21053.126584] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=240 TOS=0x00 PREC=0x00 TTL=255 ID=11872 PROTO=UDP SPT=5353 DPT=5353 LEN=220 
+Jul 10 14:45:30 raspberrypi kernel: [21053.227454] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=299 TOS=0x00 PREC=0x00 TTL=255 ID=58935 PROTO=UDP SPT=5353 DPT=5353 LEN=279 
+Jul 10 14:45:30 raspberrypi kernel: [21053.527809] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=221 TOS=0x00 PREC=0x00 TTL=255 ID=62866 PROTO=UDP SPT=5353 DPT=5353 LEN=201 
+Jul 10 14:45:30 raspberrypi kernel: [21053.728440] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=221 TOS=0x00 PREC=0x00 TTL=255 ID=5171 PROTO=UDP SPT=5353 DPT=5353 LEN=201 
+Jul 10 14:45:30 raspberrypi kernel: [21054.030761] [DDoS Log from iptables-firewIN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=365 TOS=0x00 PREC=0x00 TTL=255 ID=20915 PROTO=UDP SPT=5353 DPT=5353 LEN=345 
+Jul 10 14:45:45 raspberrypi kernel: [21068.981729] [DDoS Log] IN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=157 TOS=0x00 PREC=0x00 TTL=255 ID=9498 PROTO=UDP SPT=5353 DPT=5353 LEN=137 
+Jul 10 14:45:46 raspberrypi kernel: [21069.183226] [DDoS Log] IN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=240 TOS=0x00 PREC=0x00 TTL=255 ID=20954 PROTO=UDP SPT=5353 DPT=5353 LEN=220 
+Jul 10 14:45:46 raspberrypi kernel: [21069.188565] [DDoS Log] IN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=221 TOS=0x00 PREC=0x00 TTL=255 ID=65294 PROTO=UDP SPT=5353 DPT=5353 LEN=201 
+Jul 10 14:45:46 raspberrypi kernel: [21069.485086] [DDoS Log] IN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=221 TOS=0x00 PREC=0x00 TTL=255 ID=31654 PROTO=UDP SPT=5353 DPT=5353 LEN=201 
+Jul 10 14:45:46 raspberrypi kernel: [21069.785031] [DDoS Log] IN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=221 TOS=0x00 PREC=0x00 TTL=255 ID=13165 PROTO=UDP SPT=5353 DPT=5353 LEN=201 
+Jul 10 14:45:46 raspberrypi kernel: [21069.884801] [DDoS Log] IN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=157 TOS=0x00 PREC=0x00 TTL=255 ID=10642 PROTO=UDP SPT=5353 DPT=5353 LEN=137 
+Jul 10 14:45:46 raspberrypi kernel: [21069.986904] [DDoS Log] IN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=365 TOS=0x00 PREC=0x00 TTL=255 ID=26584 PROTO=UDP SPT=5353 DPT=5353 LEN=345 
+Jul 10 14:45:47 raspberrypi kernel: [21070.186603] [DDoS Log] IN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=240 TOS=0x00 PREC=0x00 TTL=255 ID=42102 PROTO=UDP SPT=5353 DPT=5353 LEN=220 
+Jul 10 14:45:48 raspberrypi kernel: [21071.090881] [DDoS Log] IN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=365 TOS=0x00 PREC=0x00 TTL=255 ID=53347 PROTO=UDP SPT=5353 DPT=5353 LEN=345 
+Jul 10 14:45:49 raspberrypi kernel: [21072.397675] [DDoS Log] IN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=524 TOS=0x00 PREC=0x00 TTL=255 ID=3469 PROTO=UDP SPT=5353 DPT=5353 LEN=504 
+Jul 10 14:45:49 raspberrypi kernel: [21072.895496] [DDoS Log] IN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=157 TOS=0x00 PREC=0x00 TTL=255 ID=21041 PROTO=UDP SPT=5353 DPT=5353 LEN=137 
+Jul 10 14:45:53 raspberrypi kernel: [21076.410909] [DDoS Log] IN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=524 TOS=0x00 PREC=0x00 TTL=255 ID=15296 PROTO=UDP SPT=5353 DPT=5353 LEN=504 
+Jul 10 14:45:58 raspberrypi kernel: [21081.927307] [DDoS Log] IN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=157 TOS=0x00 PREC=0x00 TTL=255 ID=27616 PROTO=UDP SPT=5353 DPT=5353 LEN=137 
+Jul 10 14:46:12 raspberrypi kernel: [21095.896949] [DDoS Log] IN=wlan0 OUT= MAC=e4:5f:01:2d:ad:13:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=192.168.100.35 LEN=64 TOS=0x00 PREC=0x00 TTL=64 ID=0 DF PROTO=TCP SPT=49166 DPT=3389 WINDOW=65535 RES=0x00 SYN URGP=0 
+Jul 10 14:46:12 raspberrypi kernel: [21096.061471] [DDoS Log] IN=wlan0 OUT= MAC=e4:5f:01:2d:ad:13:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=192.168.100.35 LEN=64 TOS=0x00 PREC=0x00 TTL=64 ID=0 DF PROTO=TCP SPT=49167 DPT=3389 WINDOW=65535 RES=0x00 SYN URGP=0 
+Jul 10 14:46:25 raspberrypi kernel: [21109.022618] [DDoS Log] IN=wlan0 OUT= MAC=01:00:5e:00:00:fb:8e:a9:b4:06:99:20:08:00 SRC=192.168.100.30 DST=224.0.0.251 LEN=157 TOS=0x00 PREC=0x00 TTL=255 ID=48697 PROTO=UDP SPT=5353 DPT=5353 LEN=137 
