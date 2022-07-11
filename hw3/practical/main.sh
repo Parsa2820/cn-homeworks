@@ -1,8 +1,13 @@
 #!/bin/bash
 #
 # This script offer a simple interface to configure iptables firewall.
-# In order to run this script, you need to have iptables, systemd, and openssh-server installed.
-# Tested on Debian GNU/Linux 11 and iptables v1.8.7.
+# In order to run this script, you need some packages:
+#   - iptables
+#   - sqlite3
+#   - openssh-server
+#   - systemd
+#   - systemd-resolved
+# Tested on Debian GNU/Linux 11.
 # Run this script with sufficient privileges.
 
 
